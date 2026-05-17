@@ -11,10 +11,9 @@ firstEntry = 0
 
 # Creating the Window
 app = QApplication([])
+
 window = QWidget()
-# Set title and font
-window.setWindowTitle("Aleks Le Fan Data Processor")
-font = QFont("Comic Sans MS", 16)
+window.setObjectName("mainWindow")
 
 # Create the layout and main table widget
 gridLayout = QGridLayout()
@@ -24,11 +23,13 @@ seriesImage = QPixmap("series.png")
 
 # Create the image labels and set the images
 characterImageLabel = QLabel()
-characterImageLabel.setPixmap(characterImage)
 characterImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+characterImageLabel.picture = characterImage
+characterImageLabel.setObjectName("characterImageLabel")
 seriesImageLabel = QLabel()
 seriesImageLabel.setPixmap(seriesImage)
 seriesImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+seriesImageLabel.setObjectName("seriesImageLabel")
 
 # align the widgets in the grid layout and add them to the window
 window.setLayout(gridLayout)
@@ -77,7 +78,13 @@ def main():
     aleksLeData = categorisealeksLeData(aleksLeCSVString)
     #result = aleksLeSearch(aleksLeData, "Luke")
     aleksLeTable(aleksLeData["list"], aleksLeData["header"])
-    
+    # Load application stylesheet if present
+    try:
+        with open("style.qss", "r") as f:
+            app.setStyleSheet(f.read())
+    except Exception:
+        pass
+
     window.show()
     sys.exit(app.exec())
 
