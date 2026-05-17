@@ -64,7 +64,7 @@ def aleksLeTable(aleksLeData):
     
 filterList = [
     {
-        "category": "Role",
+        "category": "Role Scale",
         "entry": "Main",
     },
     {
