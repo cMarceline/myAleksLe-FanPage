@@ -45,27 +45,29 @@ def regexSearch(checkDictionary, searchTerm) -> bool:
     return False
 
 # Display Functions
-def aleksLeTable(aleksLeList, aleksLeHeader):
-    print(aleksLeList)
-    print(aleksLeHeader)
+def aleksLeTable(aleksLeData):
+    print(aleksLeData["list"])
+    print(aleksLeData["header"])
+    tableList = aleksLeData["list"]
+    tableheader = aleksLeData["header"]
     table.clear()
-    table.setRowCount(len(aleksLeList))
-    table.setColumnCount(len(aleksLeHeader))
-    table.setHorizontalHeaderLabels(aleksLeHeader)
+    table.setRowCount(len(tableList))
+    table.setColumnCount(len(tableheader))
+    table.setHorizontalHeaderLabels(tableheader)
 
     # check the row for the conditions, when met add to table
-    for row in range(len(aleksLeList)):
+    for row in range(len(tableList)):
         # Filtering
         if filterCategory.currentText() != "None" and filterEntry.currentText() != "":
-            if aleksLeList[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
-                print (f"Filtering out {aleksLeList[row]}")
+            if tableList[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
+                print (f"Filtering out {tableList[row]}")
                 continue
         # Searching with a regex search function
-        # if not regexSearch(aleksLeList[row], searchEntry.text()):
+        # if not regexSearch(tableList[row], searchEntry.text()):
         #     continue
 
-        for column in range(len(aleksLeHeader)):
-            table.setItem(row, column, QTableWidgetItem(aleksLeList[row].get(aleksLeHeader[column], "")))
+        for column in range(len(tableheader)):
+            table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
 
 def aleksLeFilterCategoryUpdate():
     filterEntry.clear()
@@ -75,15 +77,13 @@ def aleksLeFilterCategoryUpdate():
         if item and item.text() not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
             filterEntry.addItem(item.text())
 
-aleksLeData : dict = {"list": [], "header": []}
+# Variable Establishing
+aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
+aleksLeData = categorisealeksLeData(aleksLeCSVString) # Dictionary containging the header data and a list of dictionaries
+
+
 def main():
-    aleksLeCSVString : str = open("aleksLe.csv").read()
-    aleksLeData = categorisealeksLeData(aleksLeCSVString)
-    #result = aleksLeSearch(aleksLeData, "Luke")
-    filterCategory.addItem("None")
-    for category in aleksLeData["header"]:
-        filterCategory.addItem(category)
-    aleksLeTable(aleksLeData["list"], aleksLeData["header"])
+    aleksLeTable(aleksLeData)
     # Load application stylesheet if present
 
     window.show()
@@ -129,7 +129,7 @@ searchnfilterGrid.addWidget(searchEntry, 0, 0)
 searchnfilterGrid.addWidget(searchButton, 0, 1)
 searchnfilterGrid.addWidget(filterCategory, 1, 0)
 searchnfilterGrid.addWidget(filterEntry, 1, 1)
-searchButton.clicked.connect(lambda:aleksLeTable(aleksLeData["list"], aleksLeData["header"]))
+searchButton.clicked.connect(lambda:aleksLeTable(aleksLeData))
 filterCategory.currentIndexChanged.connect(aleksLeFilterCategoryUpdate)
 
 # align the widgets in the grid layout and add them to the window
