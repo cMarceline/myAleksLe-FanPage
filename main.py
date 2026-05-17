@@ -114,9 +114,10 @@ def filterEntryUpdate(filterEntrySelection,filterListIndex):
     filterGridUpdate()
 
 def filterListUpdate():
-    filterNumber = 0
     availableCategories = checkAvailableFilterCategories()
     for filter in filterList:
+        filterNumber = filterList.index(filter)
+        print("Filter Number: " + str(filterNumber))
         filter["deleteButton"].clicked.connect(
             lambda: deleteFilters(filterNumber))
         filterNumber += 1
