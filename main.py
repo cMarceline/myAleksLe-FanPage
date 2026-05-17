@@ -160,7 +160,7 @@ def main():
         print(filter["category"])
         # print(str(aleksLeData["header"].index(filter["category"])))
 
-    print(searchFilterRegexConstructor("Luke", filterList))
+    #print(searchFilterRegexConstructor("Luke", filterList))
     window.show()
     sys.exit(app.exec())
 
