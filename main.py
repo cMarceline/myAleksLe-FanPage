@@ -16,8 +16,13 @@ window.setObjectName("mainWindow")
 # Create the layout and main table widget
 gridLayout = QGridLayout()
 table = QTableWidget()
+searchEntry = QLineEdit()
+searchButton = QPushButton("Search")
+filterDropdown = QComboBox()
+
 characterImage = QPixmap("aleksLe.png")
 seriesImage = QPixmap("series.png")
+
 
 # Create the image labels and set the images
 characterImageLabel = QLabel()
@@ -35,8 +40,10 @@ seriesImageLabel.setText("Series Coming Soon...")
 window.setLayout(gridLayout)
 gridLayout.addWidget(characterImageLabel, 0, 0)
 gridLayout.addWidget(seriesImageLabel, 0, 1)
-gridLayout.addWidget(table, 1, 0, 1, 2)
-
+gridLayout.addWidget(searchEntry, 1, 0)
+gridLayout.addWidget(searchButton, 1, 1)
+gridLayout.addWidget(filterDropdown, 1, 2)
+gridLayout.addWidget(table, 2, 0, 1, 3)
 
 # Functions for AleksLe data processing
 def categorisealeksLeData(aleksLeString) -> dict:
