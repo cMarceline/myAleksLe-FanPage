@@ -89,8 +89,8 @@ def aleksLeTable(aleksLeData, aleksLeHeader):
     table.setColumnCount(len(aleksLeHeader))
     table.setHorizontalHeaderLabels(aleksLeHeader)
     for row in range(len(aleksLeData)):
-        # Filter
-        if aleksLeData[row][filterCategory.currentText()] != filterEntry.currentText() or filterCategory.currentText() == "All":
+        # Filtering
+        if aleksLeData[row][filterCategory.currentText()] != filterEntry.currentText():
             continue
         for column in range(len(aleksLeHeader)):
             table.setItem(row, column, QTableWidgetItem(aleksLeData[row][aleksLeHeader[column]]))
