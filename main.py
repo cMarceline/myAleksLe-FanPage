@@ -73,7 +73,15 @@ def checkFilters(checkDictionary, category, entry) -> bool:
     return False
 
 def checkAvailableFilterCategories():
-    return aleksLeData["header"]
+    occupiedCategories = []
+    for filter in filterList:
+        occupiedCategories.append(filter["category"].currentText())
+    availableCategories = []
+    for category in aleksLeData["header"]:
+        if category not in occupiedCategories:
+            availableCategories.append(category)
+    return availableCategories
+    #return aleksLeData["header"]
 
 # Filter Mechanics holy molyyy this was a pain
 filterList = []
@@ -106,8 +114,12 @@ def filterEntryUpdate(filterEntrySelection,filterListIndex):
     filterGridUpdate()
 
 def filterListUpdate():
+    filterNumber = 0
+    availableCategories = checkAvailableFilterCategories()
     for filter in filterList:
-        pass
+        filter["deleteButton"].clicked.connect(
+            lambda: deleteFilters(filterNumber))
+        
         # Connecting and all that jazz
 
 def filterGridUpdate():
