@@ -12,16 +12,29 @@ firstEntry = 0
 # Creating the Window
 app = QApplication([])
 window = QWidget()
+# Set title and font
 window.setWindowTitle("Aleks Le Fan Data Processor")
 font = QFont("Comic Sans MS", 16)
 
-grid = QGridLayout()
+# Create the layout and main table widget
+gridLayout = QGridLayout()
 table = QTableWidget()
+characterImage = QPixmap("aleksLe.png")
+seriesImage = QPixmap("series.png")
 
-window.setLayout(grid)
-grid.addWidget(table, 0, 0)
+# Create the image labels and set the images
+characterImageLabel = QLabel()
+characterImageLabel.setPixmap(characterImage)
+characterImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+seriesImageLabel = QLabel()
+seriesImageLabel.setPixmap(seriesImage)
+seriesImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-sys.exit(app.exec())
+# align the widgets in the grid layout and add them to the window
+window.setLayout(gridLayout)
+gridLayout.addWidget(characterImageLabel, 0, 0)
+gridLayout.addWidget(seriesImageLabel, 0, 1)
+gridLayout.addWidget(table, 1, 0, 1, 2)
 
 
 # Functions for AleksLe data processing
