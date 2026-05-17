@@ -62,22 +62,22 @@ def aleksLeTable(aleksLeData):
         for column in range(len(tableheader)):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
     
+def restringing(looseList) -> str:
+    return "\n".join(match for match in looseList)
 
 def regexSearch(searchText, fullString) -> str:
     # Original Regex for returning lines containing the search text
     # ^(.*)(\bSEARCHTEXT\b)(.*)
     findallString = r"^(.*)(\b" + searchText + r"\b)(.*)"
     matches = findall(findallString, fullString, MULTILINE)
-    restringing : str = "\n".join(match for match in matches)
-    return restringing
+    return restringing(matches)
 
 def regexFilter(filterText, fullString, categoryNumber) -> str:
     # Raw REGEX
     # ^([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*)
     findallString = r"^([^,]*,){" + str(categoryNumber) + r"}\s*(\b" + filterText + r"\b)(.*)"
     matches = findall(findallString, fullString, MULTILINE)
-    restringing : str = "\n".join(match for match in matches)
-    return restringing
+    return restringing(matches)
 
 # Filter Mechanics holy molyyy this was a pain
 def checkFilters(checkDictionary, category, entry) -> bool:
