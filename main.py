@@ -92,7 +92,7 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     gigaRegex += r".*$" # End of line
     return gigaRegex
 
-def regexSnipper(regex, fullString) -> str:
+def regexSnipper(regex, fullString) -> list:
     matches = findall(regex, fullString, MULTILINE)
     return matches
 
