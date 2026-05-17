@@ -58,6 +58,7 @@ def aleksLeTable(aleksLeData, aleksLeHeader):
         # Filtering
         if filterCategory.currentText() != "None" and filterEntry.currentText() != "":
             if aleksLeData[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
+                print (f"Filtering out {aleksLeData[row]}")
                 continue
         # Searching with a regex search function
         # if not regexSearch(aleksLeData[row], searchEntry.text()):
