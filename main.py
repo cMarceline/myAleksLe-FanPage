@@ -60,7 +60,7 @@ def aleksLeTable(aleksLeData):
         # Filtering
         if filterCategory.currentText() != "None" and filterEntry.currentText() != "":
             if tableList[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
-                print (f"Filtering out {tableList[row]}")
+                table.removeRow(row)
                 continue
         # Searching with a regex search function
         # if not regexSearch(tableList[row], searchEntry.text()):
@@ -68,7 +68,7 @@ def aleksLeTable(aleksLeData):
 
         for column in range(len(tableheader)):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
-
+    
 def aleksLeFilterCategoryUpdate(aleksLeData):
     filterEntry.clear()
     category = filterCategory.currentText()
