@@ -126,7 +126,7 @@ searchnfilterGrid.addWidget(searchEntry, 0, 0)
 searchnfilterGrid.addWidget(searchButton, 0, 1)
 searchnfilterGrid.addWidget(filterCategory, 1, 0)
 searchnfilterGrid.addWidget(filterEntry, 1, 1)
-searchButton.clicked.connect(aleksLeTable(aleksLeData["list"], aleksLeData["header"]))
+searchButton.clicked.connect(lambda:aleksLeTable(aleksLeData["list"], aleksLeData["header"]))
 filterCategory.currentIndexChanged.connect(aleksLeFilterCategoryUpdate)
 
 # align the widgets in the grid layout and add them to the window
