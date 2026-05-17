@@ -72,7 +72,7 @@ def aleksLeFilterCategoryUpdate():
         if item and item.text() not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
             filterEntry.addItem(item.text())
 
-aleksLeData : dict = {list: [], header: []}
+aleksLeData : dict = {"list": [], "header": []}
 def main():
     aleksLeCSVString : str = open("aleksLe.csv").read()
     aleksLeData = categorisealeksLeData(aleksLeCSVString)
