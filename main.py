@@ -119,7 +119,7 @@ def filterListUpdate():
     for filter in filterList:
         filter["deleteButton"].clicked.connect(
             lambda: deleteFilters(filterNumber))
-        
+        filterNumber += 1
         # Connecting and all that jazz
 
 def filterGridUpdate():
