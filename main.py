@@ -63,9 +63,9 @@ def aleksLeTable(aleksLeData):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
     
 
-def regexSearch(searchText):
+def regexSearch(searchText, fullString) -> str = "":
     findallString = r"\b" + searchText + r"\b"
-    print(findallString)
+    return findall(findallString, fullString)
 
 # Filter Mechanics holy molyyy this was a pain
 def checkFilters(checkDictionary, category, entry) -> bool:
