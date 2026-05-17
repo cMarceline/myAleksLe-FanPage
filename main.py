@@ -25,8 +25,10 @@ window.setObjectName("mainWindow")
 # Create the layout and main table widget
 gridLayout = QGridLayout()
 table = QTableWidget()
+
 searchEntry = QLineEdit()
 searchButton = QPushButton("Search")
+
 filterCategory = QComboBox()
 filterEntry = QComboBox()
 
@@ -46,14 +48,20 @@ seriesImageLabel.setText("Series Coming Soon...")
 # seriesImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 # seriesImageLabel.setObjectName("seriesImageLabel")
 
+# Bind the buttons to their functions
+searchnfilterGrid = QGridLayout()
+searchnfilterGrid.addWidget(searchEntry, 0, 0)
+searchnfilterGrid.addWidget(searchButton, 0, 1)
+searchnfilterGrid.addWidget(filterCategory, 1, 0)
+searchnfilterGrid.addWidget(filterEntry, 1, 1)
+searchButton.clicked.connect(aleksLeTable(aleksLeData["list"], aleksLeData["header"]))
+filterCategory.currentIndexChanged.connect(aleksLeFilterCategoryUpdate)
+
 # align the widgets in the grid layout and add them to the window
 window.setLayout(gridLayout)
 gridLayout.addWidget(characterImageLabel, 0, 0)
 gridLayout.addWidget(seriesImageLabel, 0, 1)
-gridLayout.addWidget(searchEntry, 1, 0)
-gridLayout.addWidget(searchButton, 1, 1)
-gridLayout.addWidget(filterCategory, 2, 0)
-gridLayout.addWidget(filterEntry, 2, 1)
+gridLayout.addLayout(searchnfilterGrid, 2, 0, 1, 4)
 gridLayout.addWidget(table, 3, 0, 1, 4)
 
 # Functions for AleksLe data processing
@@ -104,11 +112,20 @@ def aleksLeTable(aleksLeData, aleksLeHeader):
         for column in range(len(aleksLeHeader)):
             table.setItem(row, column, QTableWidgetItem(aleksLeData[row].get(aleksLeHeader[column], "")))
 
+def aleksLeFilterCategoryUpdate():
+    filterEntry.clear()
+    category = filterCategory.currentText()
+    for row in range(table.rowCount()):
+        item = table.item(row, filterCategory.currentIndex())
+        if item and item.text() not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
+            filterEntry.addItem(item.text())
+
+aleksLeData : dict = {}
 def main():
     aleksLeCSVString : str = open("aleksLe.csv").read()
     aleksLeData = categorisealeksLeData(aleksLeCSVString)
     #result = aleksLeSearch(aleksLeData, "Luke")
-    filterCategory.addItem("All")
+    filterCategory.addItem("None")
     for category in aleksLeData["header"]:
         filterCategory.addItem(category)
     aleksLeTable(aleksLeData["list"], aleksLeData["header"])
