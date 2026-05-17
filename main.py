@@ -64,7 +64,8 @@ def aleksLeTable(aleksLeData):
     
 
 def regexSearch(searchText, fullString) -> str:
-    findallString = r"\b" + searchText + r"\b"
+    findallString = r"^((?!\b" + searchText + r"\b).)*$\r?\n?"
+    
     return findall(findallString, fullString)
 
 # Filter Mechanics holy molyyy this was a pain
