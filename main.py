@@ -110,11 +110,8 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     gigaRegex += r".*$" # End of line
     return gigaRegex
 
-def regexSnipper(regex, fullString, multiline: bool) -> list:
-    if multiline:
-        matches = findall(regex, fullString, MULTILINE)
-    else: 
-        matches = findall(regex, fullString)
+def regexSnipper(regex, fullString, ) -> list:
+    matches = findall(regex, fullString, MULTILINE)
     return matches
 
 # Filter Mechanics holy molyyy this was a pain
