@@ -72,7 +72,7 @@ filterList = [
         "entry": "Video Game",
     }
 ]
-def regexSearchNFilter(searchText, filterList, fullDataString) -> list:
+def searchFilterRegexConstructor(searchText, filterList) -> str:
     # Search Text Regex: ^(.*)(\bSEARCHTEXT\b)(.*)
     # Filter Text Regex: ^([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*)
     # Put them together with positive lookaheads and get
@@ -81,6 +81,7 @@ def regexSearchNFilter(searchText, filterList, fullDataString) -> list:
     gigaRegex = r"^" # Start of new line
     # start with search text positive lookahead
     gigaRegex += r"(.*)(\b" + searchText + r"\b)(.*)"
+    # add the filters with positive lookaheads
     for filter in filterList:
         # Take it line by line so I can read it (╥.╥) 
         gigaRegex += r"(?=([^,]*,){"
@@ -89,15 +90,11 @@ def regexSearchNFilter(searchText, filterList, fullDataString) -> list:
         gigaRegex += filter["entry"] 
         gigaRegex += r"\b)(.*))"
     gigaRegex += r".*$" # End of line
-    matches = findall(gigaRegex, fullDataString, MULTILINE)
-    return matches
+    return gigaRegex
 
-def regexFilter(filterText, fullString, categoryNumber) -> str:
-    # Raw REGEX
-    # ^([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*)
-    findallString = r"^([^,]*,){" + str(categoryNumber) + r"}\s*(\b" + filterText + r"\b)(.*)"
-    matches = findall(findallString, fullString, MULTILINE)
-    return restringing(matches)
+def regexSnipper(regex, fullString) -> str:
+    matches = findall(regex, fullString, MULTILINE)
+    return matches
 
 # Filter Mechanics holy molyyy this was a pain
 def checkFilters(checkDictionary, category, entry) -> bool:
@@ -159,6 +156,7 @@ def main():
     aleksLeTable(aleksLeData)
     # Load application stylesheet if present
 
+    print(searchFilterRegexConstructor("Luke", filterList))
     window.show()
     sys.exit(app.exec())
 
