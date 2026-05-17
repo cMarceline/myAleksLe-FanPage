@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import (
-    QApplication, QWidget, QLabel, QLineEdit, QPushButton, QGridLayout, QMessageBox, QTableWidget, QTableWidgetItem
+    QApplication, QWidget, QLabel, QLineEdit, QPushButton, QGridLayout, QMessageBox, QTableWidget
 )
 from PySide6.QtGui import QFont, QPixmap
 from PySide6.QtCore import Qt
@@ -20,6 +20,7 @@ table = QTableWidget()
 window.setLayout(grid)
 grid.addWidget(table, 0, 0)
 
+sys.exit(app.exec())
 
 
 # Functions for AleksLe data processing
@@ -67,5 +68,4 @@ if __name__ == "__main__":
     main()
    
 
-sys.exit(app.exec())
 window.show()
