@@ -77,10 +77,11 @@ def main():
     aleksLeData = categorisealeksLeData(aleksLeCSVString)
     #result = aleksLeSearch(aleksLeData, "Luke")
     aleksLeTable(aleksLeData["list"], aleksLeData["header"])
+    
+    window.show()
+    sys.exit(app.exec())
 
-#if __name__ == "__main__":
-    #main()
 
-window.show()
+if __name__ == "__main__":
+    main()
 
-sys.exit(app.exec())
