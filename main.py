@@ -23,7 +23,7 @@ aleksLeHeader = []
 
 def refresh():
     # ^(?:(.*)$) Returns only the first line
-    aleksLeUnsnippedHeader: list() = regexSnipper("^(?:(.*)$)", aleksLeCSVString)
+    aleksLeUnsnippedHeader: list = regexSnipper("^(?:(.*)$)", aleksLeCSVString, false)
     print(aleksLeUnsnippedHeader)
     #aleksLeHeader = aleksLeUnsnippedHeader.split(",")
     snfRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
@@ -104,8 +104,11 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     gigaRegex += r".*$" # End of line
     return gigaRegex
 
-def regexSnipper(regex, fullString) -> list:
-    matches = findall(regex, fullString, MULTILINE)
+def regexSnipper(regex, fullString, multiline: bool) -> list:
+    if multiline:
+        matches = findall(regex, fullString, MULTILINE)
+    else: 
+        matches = findall(regex, fullString)
     return matches
 
 # Filter Mechanics holy molyyy this was a pain
