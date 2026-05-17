@@ -45,27 +45,27 @@ def regexSearch(checkDictionary, searchTerm) -> bool:
     return False
 
 # Display Functions
-def aleksLeTable(aleksLeData, aleksLeHeader):
-    print(aleksLeData)
+def aleksLeTable(aleksLeList, aleksLeHeader):
+    print(aleksLeList)
     print(aleksLeHeader)
     table.clear()
-    table.setRowCount(len(aleksLeData))
+    table.setRowCount(len(aleksLeList))
     table.setColumnCount(len(aleksLeHeader))
     table.setHorizontalHeaderLabels(aleksLeHeader)
 
     # check the row for the conditions, when met add to table
-    for row in range(len(aleksLeData)):
+    for row in range(len(aleksLeList)):
         # Filtering
         if filterCategory.currentText() != "None" and filterEntry.currentText() != "":
-            if aleksLeData[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
-                print (f"Filtering out {aleksLeData[row]}")
+            if aleksLeList[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
+                print (f"Filtering out {aleksLeList[row]}")
                 continue
         # Searching with a regex search function
-        # if not regexSearch(aleksLeData[row], searchEntry.text()):
+        # if not regexSearch(aleksLeList[row], searchEntry.text()):
         #     continue
 
         for column in range(len(aleksLeHeader)):
-            table.setItem(row, column, QTableWidgetItem(aleksLeData[row].get(aleksLeHeader[column], "")))
+            table.setItem(row, column, QTableWidgetItem(aleksLeList[row].get(aleksLeHeader[column], "")))
 
 def aleksLeFilterCategoryUpdate():
     filterEntry.clear()
