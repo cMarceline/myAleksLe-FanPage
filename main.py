@@ -65,7 +65,7 @@ def aleksLeTable(aleksLeData):
 def restringing(looseList) -> str:
     restrungString = ""
     for match in looseList:
-        restrungString += match
+        restrungString += str(match)
         restrungString += "\n"
     return restrungString
 
