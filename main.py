@@ -107,7 +107,7 @@ def filterGridUpdate():
     availableCategories = checkAvailableFilterCategories()
     filterNumber = 0
     for newFilter in filterList:
-
+        staticFilterNumber = filterNumber
         filterCategoryDropdown = QComboBox()
         filterItemDropdown = QComboBox()
         filterDeleteButton = QPushButton("Delete")
@@ -121,11 +121,11 @@ def filterGridUpdate():
 
         # Connect the dropdowns and buttons to their functions
         filterCategoryDropdown.currentIndexChanged.connect(
-            lambda:filterCategoryUpdate(filterCategoryDropdown.currentIndex(), filterNumber))
+            lambda:filterCategoryUpdate(filterCategoryDropdown.currentIndex(), staticFilterNumber))
         filterItemDropdown.currentIndexChanged.connect(
             lambda:aleksLeTable(aleksLeData))
         filterDeleteButton.clicked.connect(
-            lambda:deleteFilters(filterNumber))
+            lambda:deleteFilters(staticFilterNumber))
 
         for category in availableCategories:
             filterCategoryDropdown.addItem(category)
