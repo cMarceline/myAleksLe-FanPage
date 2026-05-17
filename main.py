@@ -75,13 +75,8 @@ def checkFilters(checkDictionary, category, entry) -> bool:
 def checkAvailableFilterCategories():
     return aleksLeData["header"]
 
-
+# Filter Mechanics holy molyyy this was a pain
 filterList = []
-def deleteFilters(filterIndex): 
-    filterList.pop(filterIndex)
-    filterGridUpdate()
-    pass
-
 def createFilters(): 
     # I created a new filter Chud
     filterList.append(
@@ -90,16 +85,21 @@ def createFilters():
             "entry": "",
         }
     )
-
     filterGridUpdate()
 
-def filterCategoryUpdate(filterCategoryIndex,filterListIndex):
-    filterList[filterListIndex]["category"] = filterCategory.currentText()
+def deleteFilters(filterIndex): 
+    filterList.pop(filterIndex)
+    filterGridUpdate()
+    pass
+
+
+def filterCategoryUpdate(filterCategorySelection,filterListIndex):
+    filterList[filterListIndex]["category"] = filterCategorySelection
     filterList[filterListIndex]["entry"] = ""
     filterGridUpdate()
 
-def filterEntryUpdate(filterEntryIndex,filterListIndex):
-    filterList[filterListIndex]["entry"] = filterEntry.currentText()
+def filterEntryUpdate(filterEntrySelection,filterListIndex):
+    filterList[filterListIndex]["entry"] = filterEntrySelection
     filterGridUpdate()
 
 def filterGridUpdate():
@@ -117,9 +117,14 @@ def filterGridUpdate():
             filterCategoryDropdown.addItem(availableCategory)
         
         # Populate the Item Dropdown
-        for entry in aleksLeData["list"]:
-            if entry.get(newFilter["category"], "") not in [filterItemDropdown.itemText(i) for i in range(filterItemDropdown.count())]:
-                filterItemDropdown.addItem(entry.get(newFilter["category"], ""))
+
+        # Connect the dropdowns and buttons to their functions
+        filterCategoryDropdown.currentIndexChanged.connect(
+            lambda:filterCategoryUpdate(filterCategoryDropdown.currentIndex(), filterNumber))
+        filterItemDropdown.currentIndexChanged.connect(
+            aleksLeTable(aleksLeData))
+        filterDeleteButton.clicked.connect(
+            lambda:deleteFilters(filterNumber))
 
         for category in availableCategories:
             filterCategoryDropdown.addItem(category)
