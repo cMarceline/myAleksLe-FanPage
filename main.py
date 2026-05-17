@@ -27,7 +27,8 @@ gridLayout = QGridLayout()
 table = QTableWidget()
 searchEntry = QLineEdit()
 searchButton = QPushButton("Search")
-filterDropdown = QComboBox()
+filterCategory = QComboBox()
+filterEntry = QComboBox()
 
 characterImage = QPixmap("aleksLe.png")
 seriesImage = QPixmap("series.png")
@@ -51,8 +52,9 @@ gridLayout.addWidget(characterImageLabel, 0, 0)
 gridLayout.addWidget(seriesImageLabel, 0, 1)
 gridLayout.addWidget(searchEntry, 1, 0)
 gridLayout.addWidget(searchButton, 1, 1)
-gridLayout.addWidget(filterDropdown, 1, 2)
-gridLayout.addWidget(table, 2, 0, 1, 3)
+gridLayout.addWidget(filterCategory, 2, 0)
+gridLayout.addWidget(filterEntry, 2, 1)
+gridLayout.addWidget(table, 3, 0, 1, 4)
 
 # Functions for AleksLe data processing
 def categorisealeksLeData(aleksLeString) -> dict:
@@ -82,11 +84,14 @@ def regexSearch(aleksLeData, searchTerm) -> list:
 
 # Display Functions
 def aleksLeTable(aleksLeData, aleksLeHeader):
+    table.clear()
     table.setRowCount(len(aleksLeData))
     table.setColumnCount(len(aleksLeHeader))
     table.setHorizontalHeaderLabels(aleksLeHeader)
-    for column in range(len(aleksLeHeader)):
-        for row in range(len(aleksLeData)):
+    for row in range(len(aleksLeData)):
+        # check if the row matches the search term using a regex and filter criteria here, and only add it to the table if it does
+        if 
+        for column in range(len(aleksLeHeader)):
             table.setItem(row, column, QTableWidgetItem(aleksLeData[row][aleksLeHeader[column]]))
 
 def main():
