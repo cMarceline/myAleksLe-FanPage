@@ -13,7 +13,11 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtGui import QFont, QPixmap
 from PySide6.QtCore import Qt
-from re import findall, MULTILINE
+from re import (
+    findall, 
+    sub,
+    MULTILINE
+)
 
 
 
@@ -67,6 +71,12 @@ def regexSearch(searchText, fullString) -> str:
     # Original Regex for returning lines containing the search text
     # ^(.*)(\bSEARCHTEXT\b)(.*)
     findallString = r"^(.*)(\b" + searchText + r"\b)(.*)"
+    return re.sub(findallString, fullString, MULTILINE)
+
+def regexFilter(filterText, fullString, categoryNumber) -> str:
+    # Raw REGEX
+    # ^([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*)
+    findallString = r"^([^,]*,){" + str(categoryNumber) + r"}\s*(\b" + filterText + r"\b)(.*)"
     return findall(findallString, fullString, MULTILINE)
 
 # Filter Mechanics holy molyyy this was a pain
