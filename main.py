@@ -73,7 +73,7 @@ def checkFilters(checkDictionary, category, entry) -> bool:
     return False
 
 def checkAvailableFilterCategories():
-    pass
+    return aleksLeData["header"]
 
 
 filterList = []
@@ -98,29 +98,37 @@ def filterCategoryUpdate(filterCategoryIndex,filterListIndex):
     filterList[filterListIndex]["entry"] = ""
     filterGridUpdate()
 
+def filterEntryUpdate(filterEntryIndex,filterListIndex):
+    filterList[filterListIndex]["entry"] = filterEntry.currentText()
+    filterGridUpdate()
 
 def filterGridUpdate():
-    print("filterlist looks like", filterList)
-    for filterListEntry in filterList:
-        currentFilterNumber = filterList.index(filterListEntry)
+    availableCategories = checkAvailableFilterCategories()
+    for newFilter in filterList:
+        filterNumber = filterList.index(newFilter)
 
-        # Initialise the widgets
-        filterCategory = QComboBox()
-        filterEntry = QComboBox()
-        deleteButton = QPushButton("Delete")
+        filterCategoryDropdown = QComboBox()
+        filterItemDropdown = QComboBox()
+        filterDeleteButton = QPushButton("Delete")
 
-        # Populate the category combo box with the header data
-        for category in aleksLeData["header"]:
-            filterCategory.addItem(category)
+        # Populate the Category Dropdown
+        filterCategoryDropdown.addItem(newFilter["category"])
+        for availableCategory in availableCategories:
+            filterCategoryDropdown.addItem(availableCategory)
         
-        # Make Connections!
-        filterCategory.currentIndexChanged.connect(lambda: filterCategoryUpdate(filterCategory.currentIndex(), currentFilterNumber))
-        deleteButton.clicked.connect(lambda: deleteFilters(currentFilterNumber))
+        # Populate the Item Dropdown
+        for entry in aleksLeData["list"]:
+            if entry.get(newFilter["category"], "") not in [filterItemDropdown.itemText(i) for i in range(filterItemDropdown.count())]:
+                filterItemDropdown.addItem(entry.get(newFilter["category"], ""))
 
-        # FilterGrid Position
-        filterGrid.addWidget(filterCategory, currentFilterNumber, 0)
-        filterGrid.addWidget(filterEntry, currentFilterNumber, 1)
-        filterGrid.addWidget(deleteButton, currentFilterNumber, 2)
+        for category in availableCategories:
+            filterCategoryDropdown.addItem(category)
+
+        print("adding to grid at" +str(filterNumber))
+        filterGrid.addWidget(filterCategoryDropdown, filterNumber, 0)
+        filterGrid.addWidget(filterItemDropdown, filterNumber, 1)
+        filterGrid.addWidget(filterDeleteButton, filterNumber, 2)
+
 
 # def aleksLeFilterCategoryUpdate(aleksLeData):
 #     filterEntry.clear()
