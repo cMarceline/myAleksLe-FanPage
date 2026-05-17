@@ -29,7 +29,7 @@ def refresh():
     # ^(?:(.*)$) Returns only the first line
     aleksLeUnsplitHeader = split("^", aleksLeCSVString)
     print(aleksLeUnsplitHeader)
-    aleksLeHeader = split(",", aleksLeUnsplitHeader)
+    #aleksLeHeader = split(",", aleksLeUnsplitHeader)
     print(aleksLeHeader)
     #aleksLeHeader = aleksLeUnsnippedHeader.split(",")
     snfRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
