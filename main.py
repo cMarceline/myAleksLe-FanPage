@@ -144,7 +144,7 @@ searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
 filterAddButton.clicked.connect(createFilters)
 
 searchButton.clicked.connect(lambda:aleksLeTable(aleksLeData))
-filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
+#filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
 # align the widgets in the grid layout and add them to the window
 window.setLayout(gridLayout)
