@@ -63,7 +63,11 @@ def aleksLeTable(aleksLeData):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
     
 def restringing(looseList) -> str:
-    return "\n".join(match for match in looseList)
+    restrungString = ""
+    for match in looseList:
+        restrungString += match
+        restrungString += "\n"
+    return restrungString
 
 def regexSearch(searchText, fullString) -> str:
     # Original Regex for returning lines containing the search text
