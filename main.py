@@ -46,8 +46,6 @@ def regexSearch(checkDictionary, searchTerm) -> bool:
 
 # Display Functions
 def aleksLeTable(aleksLeData):
-    print(aleksLeData["list"])
-    print(aleksLeData["header"])
     tableList = aleksLeData["list"]
     tableheader = aleksLeData["header"]
     table.clear()
@@ -58,10 +56,8 @@ def aleksLeTable(aleksLeData):
     # check the row for the conditions, when met add to table
     for row in range(len(tableList)):
         # Filtering
-        if filterCategory.currentText() != "None" and filterEntry.currentText() != "":
-            if tableList[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
-                table.removeRow(row)
-                continue
+        if not checkFilters(tableList[row], filterCategory.currentText(), filterEntry.currentText()):
+            continue
         # Searching with a regex search function
         # if not regexSearch(tableList[row], searchEntry.text()):
         #     continue
@@ -69,6 +65,16 @@ def aleksLeTable(aleksLeData):
         for column in range(len(tableheader)):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
     
+def checkFilters(checkDictionary, category, entry) -> bool:
+    if category == "None":
+        return True
+    if checkDictionary.get(category, "") == entry:
+        return True
+    return False
+
+def createFilters(): 
+    pass
+
 def aleksLeFilterCategoryUpdate(aleksLeData):
     filterEntry.clear()
     category = filterCategory.currentText()
@@ -98,15 +104,15 @@ app.setStyleSheet(open("style.qss", "r").read())
 window = QWidget()
 window.setObjectName("mainWindow")
 
-# Create the layout and main table widget
+# Create the main table widget
 gridLayout = QGridLayout()
 table = QTableWidget()
 
 searchEntry = QLineEdit()
 searchButton = QPushButton("Search")
 
-filterCategory = QComboBox()
-filterEntry = QComboBox()
+filterText = QLabel("Filters")
+filterAddButton = QPushButton("Add Filter")
 
 characterImage = QPixmap("aleksLe.png")
 seriesImage = QPixmap("series.png")
@@ -126,10 +132,13 @@ seriesImageLabel.setText("Series Coming Soon...")
 
 # Search and filter layout
 searchnfilterGrid = QGridLayout()
+filterGrid = QGridLayout()
 searchnfilterGrid.addWidget(searchEntry, 0, 0)
 searchnfilterGrid.addWidget(searchButton, 0, 1)
-searchnfilterGrid.addWidget(filterCategory, 1, 0)
-searchnfilterGrid.addWidget(filterEntry, 1, 1)
+searchnfilterGrid.addWidget(filterText, 1, 0)
+searchnfilterGrid.addWidget(filterAddButton, 1, 1)
+searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
+
 # init and connect search n filter buttons
 filterCategory.addItem("None")
 for category in aleksLeData["header"]:
