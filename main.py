@@ -13,6 +13,9 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtGui import QFont, QPixmap
 from PySide6.QtCore import Qt
+from re import findall, MULTILINE
+
+
 
 firstEntry = 0
 
@@ -38,12 +41,6 @@ def createAleksLeDict(header, list):
         dictIterator += 1
     return aleksLeLineDict
 
-def regexSearch(checkDictionary, searchTerm) -> bool:
-    for key in checkDictionary:
-        if searchTerm in checkDictionary[key]:
-            return True
-    return False
-
 # Display Functions
 def aleksLeTable(aleksLeData):
     tableList = aleksLeData["list"]
@@ -65,6 +62,12 @@ def aleksLeTable(aleksLeData):
         for column in range(len(tableheader)):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
     
+
+def regexSearch(searchText):
+    findallString = r"\b" + searchText + r"\b"
+    print(findallString)
+
+# Filter Mechanics holy molyyy this was a pain
 def checkFilters(checkDictionary, category, entry) -> bool:
     if category == "None":
         return True
@@ -83,44 +86,20 @@ def checkAvailableFilterCategories():
     return availableCategories
     #return aleksLeData["header"]
 
-# Filter Mechanics holy molyyy this was a pain
 filterList = []
 def createFilters(): 
-    # I created a new filter Chud
-    filterList.append(
-        {
-            "category": QComboBox(),
-            "entry": QComboBox(),
-            "deleteButton": QPushButton("Delete")
-        }
-    )
-    filterListUpdate()
-    filterGridUpdate()
 
-def deleteFilters(filterIndex): 
-    print("deleting filter at index " + str(filterIndex))
-    filterList.pop(filterIndex)
-    filterListUpdate()
     pass
 
+def deleteFilters(filterIndex): 
+    pass
 
 def filterCategoryUpdate(filterCategorySelection,filterListIndex):
-    filterList[filterListIndex]["category"] = filterCategorySelection
-    filterList[filterListIndex]["entry"] = ""
-    filterGridUpdate()
-
+    pass
 def filterEntryUpdate(filterEntrySelection,filterListIndex):
-    filterList[filterListIndex]["entry"] = filterEntrySelection
-    filterGridUpdate()
-
+    pass
 def filterListUpdate():
-    availableCategories = checkAvailableFilterCategories()
-    for filter in filterList:
-        filterNumber = filterList.index(filter)
-        print("Filter Number: " + str(filterNumber))
-        filter["deleteButton"].clicked.connect(
-            lambda i=filterNumber: deleteFilters(i))
-        # Connecting and all that jazz
+    pass
 
 def filterGridUpdate():
     for filter in filterList:
@@ -140,6 +119,7 @@ def filterGridUpdate():
 
 # Variable Establishing
 aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
+aleksLeSearchedCSV: str = ""
 aleksLeData = categorisealeksLeData(aleksLeCSVString) # Dictionary containging the header data and a list of dictionaries
 
 
@@ -196,7 +176,7 @@ searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
 
-searchButton.clicked.connect(lambda:aleksLeTable(aleksLeData))
+searchButton.clicked.connect(lambda:regexSearch(searchEntry.text()))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
 # align the widgets in the grid layout and add them to the window
