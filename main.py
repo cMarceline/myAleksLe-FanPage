@@ -208,7 +208,7 @@ searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
 
-searchButton.clicked.connect(lambda: print(regexSearch(searchEntry.text(), aleksLeCSVString)))
+searchButton.clicked.connect(lambda: print(regexSearchNFilter(searchEntry.text(), aleksLeCSVString)))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
 # align the widgets in the grid layout and add them to the window
