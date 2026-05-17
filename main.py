@@ -122,7 +122,7 @@ def filterGridUpdate():
         filterCategoryDropdown.currentIndexChanged.connect(
             lambda:filterCategoryUpdate(filterCategoryDropdown.currentIndex(), filterNumber))
         filterItemDropdown.currentIndexChanged.connect(
-            aleksLeTable(aleksLeData))
+            lambda:aleksLeTable(aleksLeData))
         filterDeleteButton.clicked.connect(
             lambda:deleteFilters(filterNumber))
 
