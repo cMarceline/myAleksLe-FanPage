@@ -96,18 +96,18 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     # Put them together with positive lookaheads and get
     # ^(?=([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*))(?=(.*)(\bSEARCHTEXT\b)(.*)).*$
     # Since I use positive lookaheads they are repeatable :)
-    gigaRegex = r"^" # Start of new line
+    gigaRegex = "^(?<=\n)" # start and skip first line
     # start with search text positive lookahead
-    gigaRegex += r"(.*)(\b" + searchText + r"\b)(.*)"
+    gigaRegex += "(.*)(\b" + searchText + r"\b)(.*)"
     # add the filters with positive lookaheads
     for filter in filterList:
         # Take it line by line so I can read it (╥.╥) 
-        gigaRegex += r"(?=([^,]*,){"
+        gigaRegex += "(?=([^,]*,){"
         gigaRegex += str(aleksLeData["header"].index(filter["category"]))
-        gigaRegex += r"}\s*(\b" 
+        gigaRegex += "}\s*(\b" 
         gigaRegex += filter["entry"] 
-        gigaRegex += r"\b)(.*))"
-    gigaRegex += r".*$" # End of line
+        gigaRegex += "\b)(.*))"
+    gigaRegex += ".*$" # End of line
     return gigaRegex
 
 def regexSnipper(regex, fullString, ) -> list:
