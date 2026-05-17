@@ -69,13 +69,14 @@ def aleksLeTable(aleksLeData):
         for column in range(len(tableheader)):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
 
-def aleksLeFilterCategoryUpdate():
+def aleksLeFilterCategoryUpdate(aleksLeData):
     filterEntry.clear()
     category = filterCategory.currentText()
-    for row in range(table.rowCount()):
-        item = table.item(row, filterCategory.currentIndex())
-        if item and item.text() not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
-            filterEntry.addItem(item.text())
+    if category == "None":
+        pass
+    for entry in aleksLeData["list"]:
+        if entry.get(category, "") not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
+            filterEntry.addItem(entry.get(category, ""))
 
 # Variable Establishing
 aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
@@ -123,14 +124,19 @@ seriesImageLabel.setText("Series Coming Soon...")
 # seriesImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 # seriesImageLabel.setObjectName("seriesImageLabel")
 
-# Bind the buttons to their functions
+# Search and filter layout
 searchnfilterGrid = QGridLayout()
 searchnfilterGrid.addWidget(searchEntry, 0, 0)
 searchnfilterGrid.addWidget(searchButton, 0, 1)
 searchnfilterGrid.addWidget(filterCategory, 1, 0)
 searchnfilterGrid.addWidget(filterEntry, 1, 1)
+# init and connect search n filter buttons
+filterCategory.addItem("None")
+for category in aleksLeData["header"]:
+    filterCategory.addItem(category)
+
 searchButton.clicked.connect(lambda:aleksLeTable(aleksLeData))
-filterCategory.currentIndexChanged.connect(aleksLeFilterCategoryUpdate)
+filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
 # align the widgets in the grid layout and add them to the window
 window.setLayout(gridLayout)
