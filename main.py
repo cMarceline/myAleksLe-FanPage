@@ -89,6 +89,7 @@ def createFilters():
     )
 
 def filterCategoryUpdate():
+    pass
 
 
 def filterGridUpdate():
@@ -98,7 +99,7 @@ def filterGridUpdate():
         filterEntry = QComboBox()
         deleteButton = QPushButton("Delete")
         # Make Connections!
-        
+
         # FilterGrid Position
         filterGrid.addWidget(filterCategory, filterList.index(filterListEntry), 0)
         filterGrid.addWidget(filterEntry, filterList.index(filterListEntry), 1)
