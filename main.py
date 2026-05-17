@@ -81,16 +81,18 @@ def createFilters():
     # I created a new filter Chud
     filterList.append(
         {
-            "category": "",
-            "entry": "",
+            "category": QComboBox(),
+            "entry": QComboBox(),
+            "deleteButton": QPushButton("Delete")
         }
     )
+    filterListUpdate()
     filterGridUpdate()
 
 def deleteFilters(filterIndex): 
     print("deleting filter at index " + str(filterIndex))
     filterList.pop(filterIndex)
-    filterGridUpdate()
+    filterListUpdate()
     pass
 
 
@@ -103,39 +105,16 @@ def filterEntryUpdate(filterEntrySelection,filterListIndex):
     filterList[filterListIndex]["entry"] = filterEntrySelection
     filterGridUpdate()
 
+def filterListUpdate():
+    for filter in filterList:
+        pass
+        # Connecting and all that jazz
+
 def filterGridUpdate():
-    availableCategories = checkAvailableFilterCategories()
-    filterNumber = 0
-    for newFilter in filterList:
-        staticFilterNumber = filterNumber
-        filterCategoryDropdown = QComboBox()
-        filterItemDropdown = QComboBox()
-        filterDeleteButton = QPushButton("Delete")
-
-        # Populate the Category Dropdown
-        filterCategoryDropdown.addItem(newFilter["category"])
-        for availableCategory in availableCategories:
-            filterCategoryDropdown.addItem(availableCategory)
-        
-        # Populate the Item Dropdown
-
-        # Connect the dropdowns and buttons to their functions
-        filterCategoryDropdown.currentIndexChanged.connect(
-            lambda:filterCategoryUpdate(filterCategoryDropdown.currentIndex(), staticFilterNumber))
-        filterItemDropdown.currentIndexChanged.connect(
-            lambda:aleksLeTable(aleksLeData))
-        filterDeleteButton.clicked.connect(
-            lambda:deleteFilters(staticFilterNumber))
-
-        for category in availableCategories:
-            filterCategoryDropdown.addItem(category)
-
-        print("adding to grid at" +str(filterNumber))
-        filterGrid.addWidget(filterCategoryDropdown, filterNumber, 0)
-        filterGrid.addWidget(filterItemDropdown, filterNumber, 1)
-        filterGrid.addWidget(filterDeleteButton, filterNumber, 2)
-
-        filterNumber += 1
+    for filter in filterList:
+        filterGrid.addWidget(filter["category"], filterList.index(filter), 0)
+        filterGrid.addWidget(filter["entry"], filterList.index(filter), 1)
+        filterGrid.addWidget(filter["deleteButton"], filterList.index(filter), 2)
 
 
 # def aleksLeFilterCategoryUpdate(aleksLeData):
