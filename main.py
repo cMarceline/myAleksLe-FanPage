@@ -89,8 +89,9 @@ def aleksLeTable(aleksLeData, aleksLeHeader):
     table.setColumnCount(len(aleksLeHeader))
     table.setHorizontalHeaderLabels(aleksLeHeader)
     for row in range(len(aleksLeData)):
-        # check if the row matches the search term using a regex and filter criteria here, and only add it to the table if it does
-        if 
+        # Filter
+        if aleksLeData[row][filterCategory.currentText()] != filterEntry.currentText() or filterCategory.currentText() == "All":
+            continue
         for column in range(len(aleksLeHeader)):
             table.setItem(row, column, QTableWidgetItem(aleksLeData[row][aleksLeHeader[column]]))
 
@@ -98,6 +99,9 @@ def main():
     aleksLeCSVString : str = open("aleksLe.csv").read()
     aleksLeData = categorisealeksLeData(aleksLeCSVString)
     #result = aleksLeSearch(aleksLeData, "Luke")
+    filterCategory.addItem("All")
+    for category in aleksLeData["header"]:
+        filterCategory.addItem(category)
     aleksLeTable(aleksLeData["list"], aleksLeData["header"])
     # Load application stylesheet if present
     try:
