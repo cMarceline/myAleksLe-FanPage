@@ -72,9 +72,37 @@ def checkFilters(checkDictionary, category, entry) -> bool:
         return True
     return False
 
-def createFilters(): 
-    print("I will now make a filter chud")
+def checkAvailableFilterCategories():
     pass
+
+
+filterList = []
+def deleteFilters(): 
+    pass
+
+def createFilters(): 
+    filterList.append(
+        {
+            "category": "",
+            "entry": "",
+        }
+    )
+
+def filterCategoryUpdate():
+
+
+def filterGridUpdate():
+    for filterListEntry in filterList:
+        # Initialise the widgets
+        filterCategory = QComboBox()
+        filterEntry = QComboBox()
+        deleteButton = QPushButton("Delete")
+        # Make Connections!
+        
+        # FilterGrid Position
+        filterGrid.addWidget(filterCategory, filterList.index(filterListEntry), 0)
+        filterGrid.addWidget(filterEntry, filterList.index(filterListEntry), 1)
+        filterGrid.addWidget(deleteButton, filterList.index(filterListEntry), 2)
 
 # def aleksLeFilterCategoryUpdate(aleksLeData):
 #     filterEntry.clear()
