@@ -71,7 +71,7 @@ def regexSearch(searchText, fullString) -> str:
     # Original Regex for returning lines containing the search text
     # ^(.*)(\bSEARCHTEXT\b)(.*)
     findallString = r"^(.*)(\b" + searchText + r"\b)(.*)"
-    return sub(findallString, fullString, MULTILINE)
+    return sub(findallString, "", fullString)
 
 def regexFilter(filterText, fullString, categoryNumber) -> str:
     # Raw REGEX
