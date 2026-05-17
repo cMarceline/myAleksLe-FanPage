@@ -53,10 +53,10 @@ def aleksLeTable(aleksLeData, aleksLeHeader):
 
     # check the row for the conditions, when met add to table
     for row in range(len(aleksLeData)):
-
         # Filtering
-        if aleksLeData[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
-            continue
+        if filterCategory.currentText() != "None" and filterEntry.currentText() != "":
+            if aleksLeData[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
+                continue
         # Searching with a regex search function
         if not regexSearch(aleksLeData[row], searchEntry.text()):
             continue
