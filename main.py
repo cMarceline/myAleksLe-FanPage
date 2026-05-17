@@ -156,7 +156,9 @@ def main():
     aleksLeTable(aleksLeData)
     # Load application stylesheet if present
     for filter in filterList:
-        print(str(aleksLeData["header"].index(filter["category"])))
+        print(aleksLeData["header"])
+        print(filter["category"])
+        # print(str(aleksLeData["header"].index(filter["category"])))
 
     print(searchFilterRegexConstructor("Luke", filterList))
     window.show()
