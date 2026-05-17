@@ -81,6 +81,7 @@ def deleteFilters():
     pass
 
 def createFilters(): 
+    # I created a new filter Chud
     filterList.append(
         {
             "category": "",
@@ -88,11 +89,14 @@ def createFilters():
         }
     )
 
+    filterGridUpdate()
+
 def filterCategoryUpdate():
     pass
 
 
 def filterGridUpdate():
+    print("filterlist looks like", filterList)
     for filterListEntry in filterList:
         # Initialise the widgets
         filterCategory = QComboBox()
