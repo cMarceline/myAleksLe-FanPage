@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import (
-    QApplication, QWidget, QLabel, QLineEdit, QPushButton, QGridLayout, QMessageBox
+    QApplication, QWidget, QLabel, QLineEdit, QPushButton, QGridLayout, QMessageBox, QTableWidget
 )
 from PySide6.QtGui import QFont, QPixmap
 from PySide6.QtCore import Qt
