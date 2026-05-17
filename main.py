@@ -104,8 +104,8 @@ def filterEntryUpdate(filterEntryIndex,filterListIndex):
 
 def filterGridUpdate():
     availableCategories = checkAvailableFilterCategories()
+    filterNumber = 0
     for newFilter in filterList:
-        filterNumber = filterList.index(newFilter)
 
         filterCategoryDropdown = QComboBox()
         filterItemDropdown = QComboBox()
@@ -128,6 +128,8 @@ def filterGridUpdate():
         filterGrid.addWidget(filterCategoryDropdown, filterNumber, 0)
         filterGrid.addWidget(filterItemDropdown, filterNumber, 1)
         filterGrid.addWidget(filterDeleteButton, filterNumber, 2)
+
+        filterNumber += 1
 
 
 # def aleksLeFilterCategoryUpdate(aleksLeData):
