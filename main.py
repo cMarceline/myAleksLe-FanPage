@@ -60,11 +60,11 @@ gridLayout.addWidget(table, 3, 0, 1, 4)
 def categorisealeksLeData(aleksLeString) -> dict:
     # Break into different lines
     aleksLeList = aleksLeString.split("\n")
-    aleksLeHeader = aleksLeList.pop(firstEntry).split(",")
+    aleksLeHeader = [col.strip() for col in aleksLeList.pop(firstEntry).split(",")]
     # print(aleksLeHeader)
     aleksLeDictedList = []
     for aleksLeLine in aleksLeList:
-        aleksLeLineList = aleksLeLine.split(",")
+        aleksLeLineList = [value.strip() for value in aleksLeLine.split(",")]
         aleksLeLineDict = createAleksLeDict(aleksLeHeader, aleksLeLineList)
         aleksLeDictedList.append(aleksLeLineDict)
     return {"list": aleksLeDictedList, "header": aleksLeHeader}
@@ -77,23 +77,32 @@ def createAleksLeDict(header, list):
         dictIterator += 1
     return aleksLeLineDict
 
-def regexSearch(aleksLeData, searchTerm) -> list:
-    searchResults = []
+def regexSearch(checkDictionary, searchTerm) -> bool:
+    for key in checkDictionary:
+        if searchTerm in checkDictionary[key]:
+            return True
+    return False
 
-# Searching and Filtering Functions
-
+# Searching and Filtering Function
 # Display Functions
 def aleksLeTable(aleksLeData, aleksLeHeader):
     table.clear()
     table.setRowCount(len(aleksLeData))
     table.setColumnCount(len(aleksLeHeader))
     table.setHorizontalHeaderLabels(aleksLeHeader)
+
+    # check the row for the conditions, when met add to table
     for row in range(len(aleksLeData)):
+
         # Filtering
-        if aleksLeData[row][filterCategory.currentText()] != filterEntry.currentText():
+        if aleksLeData[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
             continue
+        # Searching with a regex search function
+        if not regexSearch(aleksLeData[row], searchEntry.text()):
+            continue
+
         for column in range(len(aleksLeHeader)):
-            table.setItem(row, column, QTableWidgetItem(aleksLeData[row][aleksLeHeader[column]]))
+            table.setItem(row, column, QTableWidgetItem(aleksLeData[row].get(aleksLeHeader[column], "")))
 
 def main():
     aleksLeCSVString : str = open("aleksLe.csv").read()
