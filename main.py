@@ -77,7 +77,9 @@ def checkAvailableFilterCategories():
 
 
 filterList = []
-def deleteFilters(): 
+def deleteFilters(filterIndex): 
+    filterList.pop(filterIndex)
+    filterGridUpdate()
     pass
 
 def createFilters(): 
@@ -91,23 +93,34 @@ def createFilters():
 
     filterGridUpdate()
 
-def filterCategoryUpdate():
-    pass
+def filterCategoryUpdate(filterCategoryIndex,filterListIndex):
+    filterList[filterListIndex]["category"] = filterCategory.currentText()
+    filterList[filterListIndex]["entry"] = ""
+    filterGridUpdate()
 
 
 def filterGridUpdate():
     print("filterlist looks like", filterList)
     for filterListEntry in filterList:
+        currentFilterNumber = filterList.index(filterListEntry)
+
         # Initialise the widgets
         filterCategory = QComboBox()
         filterEntry = QComboBox()
         deleteButton = QPushButton("Delete")
+
+        # Populate the category combo box with the header data
+        for category in aleksLeData["header"]:
+            filterCategory.addItem(category)
+        
         # Make Connections!
+        filterCategory.currentIndexChanged.connect(lambda: filterCategoryUpdate(filterCategory.currentIndex(), currentFilterNumber))
+        deleteButton.clicked.connect(lambda: deleteFilters(currentFilterNumber))
 
         # FilterGrid Position
-        filterGrid.addWidget(filterCategory, filterList.index(filterListEntry), 0)
-        filterGrid.addWidget(filterEntry, filterList.index(filterListEntry), 1)
-        filterGrid.addWidget(deleteButton, filterList.index(filterListEntry), 2)
+        filterGrid.addWidget(filterCategory, currentFilterNumber, 0)
+        filterGrid.addWidget(filterEntry, currentFilterNumber, 1)
+        filterGrid.addWidget(deleteButton, currentFilterNumber, 2)
 
 # def aleksLeFilterCategoryUpdate(aleksLeData):
 #     filterEntry.clear()
