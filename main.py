@@ -63,7 +63,7 @@ def aleksLeTable(aleksLeData):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
     
 
-def regexSearch(searchText, fullString) -> str = "":
+def regexSearch(searchText, fullString) -> str:
     findallString = r"\b" + searchText + r"\b"
     return findall(findallString, fullString)
 
@@ -176,7 +176,7 @@ searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
 
-searchButton.clicked.connect(lambda:regexSearch(searchEntry.text()))
+searchButton.clicked.connect(lambda: print(regexSearch(searchEntry.text(), aleksLeCSVString)))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
 # align the widgets in the grid layout and add them to the window
