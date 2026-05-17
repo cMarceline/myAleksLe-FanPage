@@ -6,6 +6,7 @@ from PySide6.QtGui import QFont, QPixmap
 from PySide6.QtCore import Qt
 
 
+
 firstEntry = 0
 
 # Creating the Window
