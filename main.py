@@ -68,14 +68,16 @@ def regexSearch(searchText, fullString) -> str:
     # ^(.*)(\bSEARCHTEXT\b)(.*)
     findallString = r"^(.*)(\b" + searchText + r"\b)(.*)"
     matches = findall(findallString, fullString, MULTILINE)
-    return "\n".join(matches)
+    restringing : str = "\n".join(matches)
+    return restringing
 
 def regexFilter(filterText, fullString, categoryNumber) -> str:
     # Raw REGEX
     # ^([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*)
     findallString = r"^([^,]*,){" + str(categoryNumber) + r"}\s*(\b" + filterText + r"\b)(.*)"
     matches = findall(findallString, fullString, MULTILINE)
-    return "\n".join(matches)
+    restringing : str = "\n".join(matches)
+    return restringing
 
 # Filter Mechanics holy molyyy this was a pain
 def checkFilters(checkDictionary, category, entry) -> bool:
