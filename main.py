@@ -88,6 +88,7 @@ def createFilters():
     filterGridUpdate()
 
 def deleteFilters(filterIndex): 
+    print("deleting filter at index " + str(filterIndex))
     filterList.pop(filterIndex)
     filterGridUpdate()
     pass
