@@ -58,8 +58,8 @@ def aleksLeTable(aleksLeData, aleksLeHeader):
             if aleksLeData[row].get(filterCategory.currentText(), "") != filterEntry.currentText(): 
                 continue
         # Searching with a regex search function
-        if not regexSearch(aleksLeData[row], searchEntry.text()):
-            continue
+        # if not regexSearch(aleksLeData[row], searchEntry.text()):
+        #     continue
 
         for column in range(len(aleksLeHeader)):
             table.setItem(row, column, QTableWidgetItem(aleksLeData[row].get(aleksLeHeader[column], "")))
