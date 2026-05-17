@@ -118,7 +118,7 @@ def checkAvailableFilterCategories():
     return availableCategories
     #return aleksLeData["header"]
 
-filterList = []
+#filterList = []
 def createFilters(): 
 
     pass
@@ -208,7 +208,7 @@ searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
 
-searchButton.clicked.connect(lambda: print(regexSearchNFilter(searchEntry.text(), aleksLeCSVString)))
+searchButton.clicked.connect(lambda: print(regexSearchNFilter(searchEntry.text(), filterList, aleksLeCSVString)))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
 # align the widgets in the grid layout and add them to the window
