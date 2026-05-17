@@ -18,6 +18,16 @@ from re import findall, MULTILINE
 
 
 firstEntry = 0
+aleksLeData = []
+aleksLeHeader = []
+
+def refresh():
+    # ^(?:(.*)$) Returns only the first line
+    aleksLeUnsnippedHeader = regexSnipper("^(?:(.*)$)", aleksLeCSVString)
+    aleksLeHeader = aleksLeUnsnippedHeader.split(",")
+    snfRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
+    print(snfRegex)
+    aleksLeFiltered : list = regexSnipper(snfRegex, aleksLeCSVString)
 
 
 # Functions for AleksLe data processing
@@ -72,6 +82,7 @@ filterList = [
         "entry": "Video Game",
     }
 ]
+
 def searchFilterRegexConstructor(searchText, filterList) -> str:
     # Search Text Regex: ^(.*)(\bSEARCHTEXT\b)(.*)
     # Filter Text Regex: ^([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*)
@@ -205,7 +216,7 @@ searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
 
-# searchButton.clicked.connect(lambda: print(regexSearchNFilter(searchEntry.text(), filterList, aleksLeCSVString)))
+searchButton.clicked.connect(lambda: refresh())
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
 # align the widgets in the grid layout and add them to the window
