@@ -13,7 +13,11 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtGui import QFont, QPixmap
 from PySide6.QtCore import Qt
-from re import findall, MULTILINE
+from re import (
+    split,
+    findall, 
+    MULTILINE
+)
 
 
 
@@ -23,7 +27,9 @@ aleksLeHeader = []
 
 def refresh():
     # ^(?:(.*)$) Returns only the first line
-    aleksLeUnsnippedHeader: list = regexSnipper("^(?:(.*)$)", aleksLeCSVString, false)
+    aleksLeUnsplitHeader = regexSnipper("^", aleksLeCSVString, false).pop(firstEntry)
+    aleksLeHeader = split(",", aleksLeUnsplitHeader)
+    print(aleksLeHeader)
     print(aleksLeUnsnippedHeader)
     #aleksLeHeader = aleksLeUnsnippedHeader.split(",")
     snfRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
