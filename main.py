@@ -46,6 +46,8 @@ def regexSearch(checkDictionary, searchTerm) -> bool:
 
 # Display Functions
 def aleksLeTable(aleksLeData, aleksLeHeader):
+    print(aleksLeData)
+    print(aleksLeHeader)
     table.clear()
     table.setRowCount(len(aleksLeData))
     table.setColumnCount(len(aleksLeHeader))
