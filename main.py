@@ -73,6 +73,7 @@ def checkFilters(checkDictionary, category, entry) -> bool:
     return False
 
 def createFilters(): 
+    print("I will now make a filter chud")
     pass
 
 def aleksLeFilterCategoryUpdate(aleksLeData):
@@ -140,9 +141,7 @@ searchnfilterGrid.addWidget(filterAddButton, 1, 1)
 searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
 
 # init and connect search n filter buttons
-filterCategory.addItem("None")
-for category in aleksLeData["header"]:
-    filterCategory.addItem(category)
+filterAddButton.clicked.connect(createFilters)
 
 searchButton.clicked.connect(lambda:aleksLeTable(aleksLeData))
 filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
