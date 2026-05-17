@@ -23,8 +23,9 @@ aleksLeHeader = []
 
 def refresh():
     # ^(?:(.*)$) Returns only the first line
-    aleksLeUnsnippedHeader = regexSnipper("^(?:(.*)$)", aleksLeCSVString)
-    aleksLeHeader = aleksLeUnsnippedHeader.split(",")
+    aleksLeUnsnippedHeader: list() = regexSnipper("^(?:(.*)$)", aleksLeCSVString)
+    print(aleksLeUnsnippedHeader)
+    #aleksLeHeader = aleksLeUnsnippedHeader.split(",")
     snfRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
     print(snfRegex)
     aleksLeFiltered : list = regexSnipper(snfRegex, aleksLeCSVString)
