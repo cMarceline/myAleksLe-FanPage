@@ -62,19 +62,35 @@ def aleksLeTable(aleksLeData):
         for column in range(len(tableheader)):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
     
-def restringing(looseList) -> str:
-    restrungString = ""
-    for match in looseList:
-        restrungString += str(match)
-        restrungString += "\n"
-    return restrungString
-
-def regexSearch(searchText, fullString) -> str:
-    # Original Regex for returning lines containing the search text
-    # ^(.*)(\bSEARCHTEXT\b)(.*)
-    findallString = r"^(.*)(\b" + searchText + r"\b)(.*)"
-    matches = findall(findallString, fullString, MULTILINE)
-    return restringing(matches)
+filterList = [
+    {
+        "category": "Role",
+        "entry": "Main",
+    },
+    {
+        "category": "Medium",
+        "entry": "Video Game",
+    }
+]
+def regexSearchNFilter(searchText, filterList, fullDataString) -> list:
+    # Search Text Regex: ^(.*)(\bSEARCHTEXT\b)(.*)
+    # Filter Text Regex: ^([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*)
+    # Put them together with positive lookaheads and get
+    # ^(?=([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*))(?=(.*)(\bSEARCHTEXT\b)(.*)).*$
+    # Since I use positive lookaheads they are repeatable :)
+    gigaRegex = r"^" # Start of new line
+    # start with search text positive lookahead
+    gigaRegex += r"(.*)(\b" + searchText + r"\b)(.*)"
+    for filter in filterList:
+        # Take it line by line so I can read it (╥.╥) 
+        gigaRegex += r"(?=([^,]*,){"
+        gigaRegex += str(aleksLeData["header"].index(filter["category"]))
+        gigaRegex += r"}\s*(\b" 
+        gigaRegex += filter["entry"] 
+        gigaRegex += r"\b)(.*))"
+    gigaRegex += r".*$" # End of line
+    matches = findall(gigaRegex, fullDataString, MULTILINE)
+    return matches
 
 def regexFilter(filterText, fullString, categoryNumber) -> str:
     # Raw REGEX
