@@ -78,8 +78,9 @@ def main():
     #result = aleksLeSearch(aleksLeData, "Luke")
     aleksLeTable(aleksLeData["list"], aleksLeData["header"])
 
-if __name__ == "__main__":
-    main()
-   
+#if __name__ == "__main__":
+    #main()
 
 window.show()
+
+sys.exit(app.exec())
