@@ -56,8 +56,8 @@ def aleksLeTable(aleksLeData):
     # check the row for the conditions, when met add to table
     for row in range(len(tableList)):
         # Filtering
-        if not checkFilters(tableList[row], filterCategory.currentText(), filterEntry.currentText()):
-            continue
+        # if not checkFilters(tableList[row], filterCategory.currentText(), filterEntry.currentText()):
+        #     continue
         # Searching with a regex search function
         # if not regexSearch(tableList[row], searchEntry.text()):
         #     continue
@@ -76,14 +76,14 @@ def createFilters():
     print("I will now make a filter chud")
     pass
 
-def aleksLeFilterCategoryUpdate(aleksLeData):
-    filterEntry.clear()
-    category = filterCategory.currentText()
-    if category == "None":
-        pass
-    for entry in aleksLeData["list"]:
-        if entry.get(category, "") not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
-            filterEntry.addItem(entry.get(category, ""))
+# def aleksLeFilterCategoryUpdate(aleksLeData):
+#     filterEntry.clear()
+#     category = filterCategory.currentText()
+#     if category == "None":
+#         pass
+#     for entry in aleksLeData["list"]:
+#         if entry.get(category, "") not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
+#             filterEntry.addItem(entry.get(category, ""))
 
 # Variable Establishing
 aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
