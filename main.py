@@ -29,15 +29,6 @@ def cleanUpFindall(unsanitised : list) :
         sanitised.append(cleaningUp)
     return sanitised
 
-def stripList(unstripped: list, term : str = None) :
-    stripped = []
-    if term == None: 
-        for entry in unstripped:
-            entry.strip()
-    else:
-        for entry in unstripped:
-            entry.strip(term)
-    return stripped
 
 def refresh(searchTerm, filterList):
     # ^(?:(.*)$) Returns only the first line
@@ -61,8 +52,8 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     splitUp = []
     for unsplit in sanitised:
         nowSplit = unsplit.split(",")
-        nowSplit = stripList(nowSplit)
-        print(nowSplit)
+        for word in nowSplit:
+            word.strip()
         splitUp.append(nowSplit)
     return splitUp
 
@@ -70,6 +61,9 @@ def viewAllInCategory(category) -> list:
     categoryNumber = aleksLeHeader.index(category)
     simpleRegex = r"^(?<=\n)((?=([^,]*,){" + str(categoryNumber) + r"}))"
     justThat = cleanUpFindall(findall(simpleRegex, aleksLeCSVString, MULTILINE))
+    for entry in justThat:
+        entry.strip()
+        entry.strip(",")
     print(justThat)
 
 # Display Functions
