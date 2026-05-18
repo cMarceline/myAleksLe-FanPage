@@ -39,7 +39,8 @@ filterList = [
 def refresh():
     # ^(?:(.*)$) Returns only the first line
     aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
-    print(grandAleksLeFilter())
+    print(aleksLeHeader)
+    #print(grandAleksLeFilter())
 
 def getAleksLeHeader(CSVstring) -> list:
     header = [col.strip() for col in CSVstring.split("\n").pop(firstEntry).split(",")]
