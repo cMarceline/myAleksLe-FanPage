@@ -67,7 +67,8 @@ def viewAllInCategory(category) -> list:
     stripped = []
     for entry in justThat:
         stripped.append(entry.strip().strip(","))
-    print(stripped)
+    unduped = list(set(stripped))
+    print(unduped)
 
 # Display Functions
 def aleksLeTable(aleksLeList, aleksLeHeader):
