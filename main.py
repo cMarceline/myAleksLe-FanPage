@@ -58,6 +58,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     for unsplit in sanitised:
         nowSplit = unsplit.split(",")
         nowSplit = stripList(nowSplit)
+        print(nowSplit)
         splitUp.append(nowSplit)
     return splitUp
 
