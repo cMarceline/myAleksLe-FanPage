@@ -18,7 +18,6 @@ QLabel#aleksLeImage {
   padding: 6px;
   min-height: 100px;
   max-height: 200px;
-  max-width: 300px;
 }
 
 QTableWidget {
