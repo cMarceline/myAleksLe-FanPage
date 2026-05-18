@@ -136,7 +136,7 @@ aleksLeList = []
 
 
 def main():
-    refresh()
+    refresh(searchEntry.text(),filterList)
     window.show()
     sys.exit(app.exec())
 
@@ -192,13 +192,19 @@ searchnfilterGrid.addWidget(filterEntry, 1, 1)
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
 populateDropdown(filterDropdown, aleksLeHeader)
+
 filterDropdown.currentIndexChanged.connect(
     lambda: populateDropdown(
         filterEntry,viewAllInCategory(filterDropdown.currentText()),True
     )
 )
+filterDropdown.currentIndexChanged.connect(
+    lambda: refresh(searchEntry.text(),filterList)
+)
+searchButton.clicked.connect(
+    lambda: refresh(searchEntry.text(),filterList)
+)
 
-searchButton.clicked.connect(lambda: refresh(searchEntry.text(),filterList))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
 # align the widgets in the grid layout and add them to the window
