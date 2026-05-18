@@ -26,6 +26,7 @@ def cleanUpFindall(unsanitised : list) :
         cleaningUp = "" 
         for text in entry:
             cleaningUp += text
+        sanitised.append(splitUp)
     return sanitised
 
 
