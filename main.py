@@ -35,12 +35,13 @@ filterList = [
     }
 ]
 
+aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
+aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
 
 def refresh():
     # ^(?:(.*)$) Returns only the first line
     aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
-    print(aleksLeHeader)
-    #print(grandAleksLeFilter())
+    aleksLeListicle = grandAleksLeFilter(aleksLeCSVString)
 
 def getAleksLeHeader(CSVstring) -> list:
     header = [col.strip() for col in CSVstring.split("\n").pop(firstEntry).split(",")]
@@ -50,10 +51,6 @@ def getAleksLeHeader(CSVstring) -> list:
     # for headerEntry in headerList:
     #     headerEntry.strip()
     # aleksLeHeader = headerList
-
-aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
-aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
-
 
 def grandAleksLeFilter():
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
@@ -113,7 +110,7 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     # Since I use positive lookaheads they are repeatable :)
     gigaRegex = r"^(?<=\n)" # start and skip first line (header)
     # start with search text positive lookahead
-    gigaRegex += r"(.*)(\b" + searchText + r"\b)(.*)"
+    gigaRegex += r"(?=(.*)(\b" + searchText + r"\b)(.*))"
     # add the filters with positive lookaheads
     for filter in filterList:
         # Take it line by line so I can read it (╥.╥) 
