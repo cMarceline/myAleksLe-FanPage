@@ -22,6 +22,8 @@ from re import (
     MULTILINE
 )
 
+# KEY FUNCTIONS
+
 def cleanUpFindall(unsanitised : list) :
     sanitised = []
     for entry in unsanitised:
@@ -134,7 +136,8 @@ def createFilters():
 #             filterEntry.addItem(entry.get(category, ""))
 
 
-# Relevant Variables
+# VARIABLE DEFINING
+
 firstEntry = 0
 filterList = []
 
@@ -150,7 +153,9 @@ def main():
     sys.exit(app.exec())
 
 
-# Creating the Window
+# QT CREATION
+
+#creating the window
 app = QApplication([])
 app.setStyleSheet(open("style.qss", "r").read())
 
