@@ -92,7 +92,7 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
 
 # Filter Mechanics holy molyyy this was a pain
 def populateDropdown(dropdown : QComboBox, addList):
-    for entry in addList
+    for entry in addList :
         dropdown.addItem()
 
 
