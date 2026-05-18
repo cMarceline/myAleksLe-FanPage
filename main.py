@@ -51,6 +51,7 @@ def getAleksLeHeader():
 
 def grandAleksLeFilter():
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
+    print(disgustingRegex)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
     print(unsanitised)
     # for entry in unsanitised: 
