@@ -60,18 +60,10 @@ def aleksLeTable(aleksLeList, aleksLeHeader):
     table.setRowCount(len(tableList))
     table.setColumnCount(len(tableheader))
     table.setHorizontalHeaderLabels(tableheader)
-
-    # check the row for the conditions, when met add to table
+    
     for row in range(len(tableList)):
-        # Filtering
-        # if not checkFilters(tableList[row], filterCategory.currentText(), filterEntry.currentText()):
-        #     continue
-        # Searching with a regex search function
-        # if not regexSearch(tableList[row], searchEntry.text()):
-        #     continue
-
         for column in range(len(tableheader)):
-            table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
+            table.setItem(row, column, QTableWidgetItem(tableList[row][column]))
     
 
 def searchFilterRegexConstructor(searchText, filterList) -> str:
