@@ -179,7 +179,7 @@ def filterGridUpdate():
 #             filterEntry.addItem(entry.get(category, ""))
 
 def main():
-    aleksLeTable(aleksLeData)
+    #aleksLeTable(aleksLeData)
 
     print(searchFilterRegexConstructor("Luke", filterList))
     window.show()
