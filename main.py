@@ -49,10 +49,7 @@ def getAleksLeHeader(CSVstring) -> list:
 
 def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
-    print(disgustingRegex)
-    print(aleksLeCSVString)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
-    print(unsanitised)
     sanitised = cleanUpFindall(unsanitised)
     splitUp = []
     for unsplit in sanitised:
