@@ -106,7 +106,10 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     return gigaRegex
 
 # Filter Mechanics holy molyyy this was a pain
-def populateDropdown(dropdown, addList:list):
+def populateDropdown(dropdown, addList:list, addBlank:bool):
+    dropdown.clear()
+    if addBlank:
+        dropdown.addItem("")
     for entry in addList :
         dropdown.addItem(entry)
 
