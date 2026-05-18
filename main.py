@@ -216,8 +216,12 @@ searchButton.clicked.connect(
 # align the widgets in the grid layout and add them to the window
 window.setLayout(gridLayout)
 gridLayout.addWidget(characterImageLabel, 0, 0)
-gridLayout.addLayout(searchnfilterGrid, 2, 0, 1, 4)
-gridLayout.addWidget(table, 3, 0, 1, 4)
+gridLayout.addLayout(searchnfilterGrid, 1, 0, 1, 4)
+gridLayout.addWidget(table, 2, 0, 1, 4)
+gridLayout.setRowStretch(0,2)
+gridLayout.setRowStretch(1,1)
+gridLayout.setRowStretch(2,4)
+
 
 
 if __name__ == "__main__":
