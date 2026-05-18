@@ -51,8 +51,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
     print(disgustingRegex)
     print(aleksLeCSVString)
-    unsanitised = finditer(disgustingRegex, aleksLeCSVString, MULTILINE)
-    #unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
+    unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
     print(unsanitised)
     sanitised = cleanUpFindall(unsanitised)
     splitUp = []
@@ -96,7 +95,8 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     # Since I use positive lookaheads they are repeatable :)
     gigaRegex = r"^(?<=\n)(" # start and skip first line (header)
     # start with search text positive lookahead
-    gigaRegex += r"(?=(.*)(\b" + searchText + r"\b)(.*))"
+    if searchText != "":
+        gigaRegex += r"(?=(.*)(\b" + searchText + r"\b)(.*))"
     # add the filters with positive lookaheads
     for filter in filterList:
         # Take it line by line so I can read it (╥.╥) 
