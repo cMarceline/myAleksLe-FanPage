@@ -40,7 +40,7 @@ filterList = [
 def refresh():
     # ^(?:(.*)$) Returns only the first line
     getAleksLeHeader()
-    
+    print(grandAleksLeFilter())
 
 def getAleksLeHeader():
     headerString = aleksLeCSVString.split("\n").pop(firstEntry)
