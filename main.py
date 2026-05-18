@@ -58,7 +58,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     return splitUp
 
 def viewAllInCategory(category) -> list:
-    categoryNumber = aleksLeHeader.index(category) - firstEntry
+    categoryNumber = aleksLeHeader.index(category)
     simpleRegex = r"^(?<=\n)((?=([^,]*,){" + str(categoryNumber) + r"}))"
     justThat = cleanUpFindall(findall(simpleRegex, aleksLeCSVString, MULTILINE))
     print(justThat)
@@ -82,7 +82,7 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     # Search Text Regex: ^(.*)(\bSEARCHTEXT\b)(.*)
     # Filter Text Regex: ^([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*)
     # Put them together with positive lookaheads and get
-    # ^(?=([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*))(?=(.*)(\bSEARCHTEXT\b)(.*)).*$
+    # ^(?<=\n)(?=([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*))(?=(.*)(\bSEARCHTEXT\b)(.*)).*$
     # Since I use positive lookaheads they are repeatable :)
     gigaRegex = r"^(?<=\n)" # start and skip first line (header)
     # start with search text positive lookahead
