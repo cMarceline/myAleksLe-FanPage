@@ -185,7 +185,7 @@ searchnfilterGrid = QGridLayout()
 searchnfilterGrid.addWidget(searchLabel, 0, 0)
 searchnfilterGrid.addWidget(searchEntry, 0, 1)
 searchnfilterGrid.addWidget(searchButton, 0, 2)
-searchnfilterGrid.addWidget(filterLabel, 1, 0)
+searchnfilterGrid.addWidget(filterText, 1, 0)
 searchnfilterGrid.addWidget(filterDropdown, 1, 1)
 searchnfilterGrid.addWidget(filterEntry, 1, 2)
 
