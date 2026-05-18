@@ -117,7 +117,7 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     for filter in filterList:
         # Take it line by line so I can read it (╥.╥) 
         gigaRegex += r"(?=([^,]*,){"
-        gigaRegex += str(aleksLeData["header"].index(filter["category"]))
+        gigaRegex += str(aleksLeHeader.index(filter["category"]))
         gigaRegex += r"}\s*(\b" 
         gigaRegex += filter["entry"] 
         gigaRegex += r"\b)(.*))"
