@@ -113,6 +113,13 @@ def populateDropdown(dropdown, addList:list, addBlank:bool=False):
     for entry in addList :
         dropdown.addItem(entry)
 
+def refreshFilterList():
+    filterList = [{
+        "category" : filterDropdown.currentText(),
+        "entry" : filterEntry.currentText()
+    }]
+
+
 def createFilters():
     pass
 
@@ -199,7 +206,9 @@ filterDropdown.currentIndexChanged.connect(
     )
 )
 filterDropdown.currentIndexChanged.connect(
-    lambda: refresh(searchEntry.text(),filterList)
+    lambda: 
+        refreshFilterList();
+        refresh(searchEntry.text(),filterList)
 )
 searchButton.clicked.connect(
     lambda: refresh(searchEntry.text(),filterList)
