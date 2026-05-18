@@ -147,6 +147,7 @@ aleksLeList = []
 
 def main():
     refresh(searchEntry.text(),filterList)
+    window.resize(1000, 600)
     window.show()
     sys.exit(app.exec())
 
