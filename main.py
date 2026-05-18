@@ -161,6 +161,7 @@ window.setObjectName("mainWindow")
 gridLayout = QGridLayout()
 table = QTableWidget()
 
+searchLabel = QLabel
 searchEntry = QLineEdit()
 searchButton = QPushButton("Search")
 
@@ -170,7 +171,6 @@ filterText = QLabel("Filters")
 filterAddButton = QPushButton("Add Filter")
 
 characterImage = QPixmap("aleksLe.png")
-seriesImage = QPixmap("series.png")
 
 
 # Create the image labels and set the images
@@ -180,13 +180,14 @@ characterImageLabel.setPixmap(characterImage)
 characterImageLabel.setObjectName("aleksLeImage")
 
 # Search and filter layout
-# GO FOR SIMPLE FILTER
 searchnfilterGrid = QGridLayout()
 #filterGrid = QGridLayout()
-searchnfilterGrid.addWidget(searchEntry, 0, 0)
-searchnfilterGrid.addWidget(searchButton, 0, 1)
-searchnfilterGrid.addWidget(filterDropdown, 1, 0)
-searchnfilterGrid.addWidget(filterEntry, 1, 1)
+searchnfilterGrid.addWidget(searchLabel, 0, 0)
+searchnfilterGrid.addWidget(searchEntry, 0, 1)
+searchnfilterGrid.addWidget(searchButton, 0, 2)
+searchnfilterGrid.addWidget(filterLabel, 1, 0)
+searchnfilterGrid.addWidget(filterDropdown, 1, 1)
+searchnfilterGrid.addWidget(filterEntry, 1, 2)
 
 
 # init and connect search n filter buttons
@@ -208,7 +209,6 @@ searchButton.clicked.connect(
 # align the widgets in the grid layout and add them to the window
 window.setLayout(gridLayout)
 gridLayout.addWidget(characterImageLabel, 0, 0)
-gridLayout.addWidget(seriesImageLabel, 0, 1)
 gridLayout.addLayout(searchnfilterGrid, 2, 0, 1, 4)
 gridLayout.addWidget(table, 3, 0, 1, 4)
 
