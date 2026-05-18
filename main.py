@@ -61,9 +61,10 @@ def viewAllInCategory(category) -> list:
     categoryNumber = aleksLeHeader.index(category)
     simpleRegex = r"^(?<=\n)((?=([^,]*,){" + str(categoryNumber) + r"}))"
     justThat = cleanUpFindall(findall(simpleRegex, aleksLeCSVString, MULTILINE))
-    # for entry in justThat:
-        # entry.strip().strip(",")
-    print(justThat)
+    stripped = []
+    for entry in justThat:
+        stripped.append(entry.strip().strip(","))
+    print(stripped)
 
 # Display Functions
 def aleksLeTable(aleksLeList, aleksLeHeader):
