@@ -136,7 +136,10 @@ def createFilters():
 
 # Relevant Variables
 firstEntry = 0
-filterList = []
+filterList = [{
+    "category" : Character,
+    "entry" : Luke
+}]
 
 aleksLeCSVString : str = open("aleksLeTiny.csv").read() # The Raw CSV String
 aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
@@ -201,17 +204,17 @@ searchnfilterGrid.setColumnStretch(2,1)
 populateDropdown(filterDropdown, aleksLeHeader)
 populateDropdown(filterEntry,viewAllInCategory(filterDropdown.currentText()),True)
 
-filterDropdown.currentIndexChanged.connect(
-    lambda: populateDropdown(
-        filterEntry,viewAllInCategory(filterDropdown.currentText()),True
-    )
-)
-filterEntry.currentIndexChanged.connect(
-    lambda: refreshFilterList()
-)
-searchButton.clicked.connect(
-    lambda: refreshFilterList()
-)
+# filterDropdown.currentIndexChanged.connect(
+#     lambda: populateDropdown(
+#         filterEntry,viewAllInCategory(filterDropdown.currentText()),True
+#     )
+# )
+# filterEntry.currentIndexChanged.connect(
+#     lambda: refreshFilterList()
+# )
+# searchButton.clicked.connect(
+#     lambda: refreshFilterList()
+# )
 
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
