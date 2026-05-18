@@ -46,23 +46,18 @@ def getAleksLeHeader(CSVstring) -> list:
     #     headerEntry.strip()
     # aleksLeHeader = headerList
 
-def stripList(unstripped : list, input: str = None) -> list:
-    stripped = []
-    for entry in unstripped:
-        stripped.append(entry.strip().strip(input))
-    return stripped
-
-
 def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
     sanitised = cleanUpFindall(unsanitised)
     print(sanitised)
-    strippedUp = []
+    splitUp = []
     for unsplit in sanitised:
         nowSplit = unsplit.split(",")
-        strippedUp = stripList(nowSplit)
-    return strippedUp
+        for word in nowSplit:
+            word.strip()
+        splitUp.append(nowSplit)
+    return splitUp
 
 def viewAllInCategory(category) -> list:
     categoryNumber = aleksLeHeader.index(category)
