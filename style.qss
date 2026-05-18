@@ -20,6 +20,10 @@ QLabel#aleksLeImage {
   height: 100%;
 }
 
+QPixmap{
+    
+}
+
 QTableWidget {
     min-height: 75%;
     width: 100%;
