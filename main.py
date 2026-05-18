@@ -141,7 +141,7 @@ def createFilters():
 firstEntry = 0
 filterList = []
 
-aleksLeCSVString : str = open("aleksLeTiny.csv").read() # The Raw CSV String
+aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
 aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
 aleksLeList = []
 
