@@ -184,7 +184,7 @@ searchnfilterGrid.addWidget(filterEntry, 1, 1)
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
 populateDropdown(filterDropdown, aleksLeHeader)
-filterDropdown.currentIndexChanged.connect(viewAllInCategory)
+filterDropdown.currentIndexChanged.connect(lambda: viewAllInCategory(filterDropdown.currentText()))
 
 searchButton.clicked.connect(lambda: refresh(searchEntry.text(),filterList))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
