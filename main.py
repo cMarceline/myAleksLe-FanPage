@@ -25,6 +25,7 @@ def refresh(searchTerm, filterList):
     # ^(?:(.*)$) Returns only the first line
     aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
     aleksLeListicle = grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList)
+    aleksLeTable(aleksLeListicle, aleksLeHeader)
 
 def getAleksLeHeader(CSVstring) -> list:
     header = [col.strip() for col in CSVstring.split("\n").pop(firstEntry).split(",")]
@@ -39,7 +40,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
     # print(disgustingRegex)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
-    # print(unsanitised)
+    print(unsanitised)
     sanitised = []
     for entry in unsanitised:
         cleaningUp = "" 
@@ -48,32 +49,12 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
         saniList = cleaningUp.split(",")
         for sani in saniList:
             sani.strip() 
-
         sanitised.append(saniList)
     print(saniList)
 
-# Functions for AleksLe data processing
-def categorisealeksLeData(aleksLeString) -> dict:
-    # Break into different lines
-    aleksLeList = aleksLeString.split("\n")
-    # print(aleksLeHeader)
-    aleksLeDictedList = []
-    for aleksLeLine in aleksLeList:
-        aleksLeLineList = [value.strip() for value in aleksLeLine.split(",")]
-        aleksLeLineDict = createAleksLeDict(aleksLeHeader, aleksLeLineList)
-        aleksLeDictedList.append(aleksLeLineDict)
-    return {"list": aleksLeDictedList, "header": aleksLeHeader}
-
-def createAleksLeDict(header, list):
-    dictIterator = 0
-    aleksLeLineDict = {}
-    for aleksLeCategory in list:
-        aleksLeLineDict[header[dictIterator]] = aleksLeCategory
-        dictIterator += 1
-    return aleksLeLineDict
 
 # Display Functions
-def aleksLeTable(aleksLeData):
+def aleksLeTable(aleksLeList, aleksLeHeader):
     tableList = aleksLeList
     tableheader = aleksLeHeader
     table.clear()
