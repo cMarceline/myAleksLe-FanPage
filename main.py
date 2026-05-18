@@ -16,26 +16,45 @@ from PySide6.QtCore import Qt
 from re import (
     split,
     findall, 
+    sub,
     MULTILINE
 )
 
 
-
+# Relevant Variables
 firstEntry = 0
 aleksLeData = []
 aleksLeHeader = []
+filterList = [
+    {
+        "category": "Role Scale",
+        "entry": "Main",
+    },
+    {
+        "category": "Medium",
+        "entry": "Video Game",
+    }
+]
+
 
 def refresh():
     # ^(?:(.*)$) Returns only the first line
-    aleksLeUnsplitHeader = split("^", aleksLeCSVString)
-    print(aleksLeUnsplitHeader)
-    #aleksLeHeader = split(",", aleksLeUnsplitHeader)
-    print(aleksLeHeader)
-    #aleksLeHeader = aleksLeUnsnippedHeader.split(",")
-    snfRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
-    print(snfRegex)
-    aleksLeFiltered : list = regexSnipper(snfRegex, aleksLeCSVString)
+    getAleksLeHeader()
+    
 
+def getAleksLeHeader():
+    headerString = aleksLeCSVString.split("\n").pop(firstEntry)
+    headerList = headerString.split(",")
+    for headerEntry in headerList:
+        headerEntry.strip()
+    aleksLeHeader = headerList
+
+def grandAleksLeFilter():
+    disgustingRegex = searchFilterRegexConstructor(searchText.search)
+    unsanitised = findall(searchEntry.currentText(), aleksLeCSVString, MULTILINE)
+    print(unsanitised)
+    # for entry in unsanitised: 
+    #     sub()
 
 # Functions for AleksLe data processing
 def categorisealeksLeData(aleksLeString) -> dict:
@@ -79,16 +98,6 @@ def aleksLeTable(aleksLeData):
         for column in range(len(tableheader)):
             table.setItem(row, column, QTableWidgetItem(tableList[row].get(tableheader[column], "")))
     
-filterList = [
-    {
-        "category": "Role Scale",
-        "entry": "Main",
-    },
-    {
-        "category": "Medium",
-        "entry": "Video Game",
-    }
-]
 
 def searchFilterRegexConstructor(searchText, filterList) -> str:
     # Search Text Regex: ^(.*)(\bSEARCHTEXT\b)(.*)
@@ -96,18 +105,18 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     # Put them together with positive lookaheads and get
     # ^(?=([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*))(?=(.*)(\bSEARCHTEXT\b)(.*)).*$
     # Since I use positive lookaheads they are repeatable :)
-    gigaRegex = "^(?<=\n)" # start and skip first line (header)
+    gigaRegex = r"^(?<=\n)" # start and skip first line (header)
     # start with search text positive lookahead
-    gigaRegex += "(.*)(\b" + searchText + r"\b)(.*)"
+    gigaRegex += r"(.*)(\b" + searchText + r"\b)(.*)"
     # add the filters with positive lookaheads
     for filter in filterList:
         # Take it line by line so I can read it (╥.╥) 
-        gigaRegex += "(?=([^,]*,){"
+        gigaRegex += r"(?=([^,]*,){"
         gigaRegex += str(aleksLeData["header"].index(filter["category"]))
-        gigaRegex += "}\s*(\b" 
+        gigaRegex += r"}\s*(\b" 
         gigaRegex += filter["entry"] 
-        gigaRegex += "\b)(.*))"
-    gigaRegex += ".*$" # End of line
+        gigaRegex += r"\b)(.*))"
+    gigaRegex += r".*$" # End of line
     return gigaRegex
 
 def regexSnipper(regex, fullString, ) -> list:
