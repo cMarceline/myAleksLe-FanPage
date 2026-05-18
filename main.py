@@ -20,6 +20,14 @@ from re import (
     MULTILINE
 )
 
+def cleanUpFindall(unsanitised : list) :
+    sanitised = []
+    for entry in unsanitised:
+        cleaningUp = "" 
+        for text in entry:
+            cleaningUp += text
+    return sanitised
+
 
 def refresh(searchTerm, filterList):
     # ^(?:(.*)$) Returns only the first line
@@ -45,14 +53,6 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     for sani in saniSplit:
         sani.strip()
     return saniSplit
-
-def cleanUpFindall(unsanitised : list) :
-    sanitised = []
-    for entry in unsanitised:
-        cleaningUp = "" 
-        for text in entry:
-            cleaningUp += text
-    return sanitised
 
 
 # Display Functions
