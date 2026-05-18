@@ -34,8 +34,6 @@ filterList = [
         "entry": "Video Game",
     }
 ]
-aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
-aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
 
 
 def refresh():
@@ -51,6 +49,10 @@ def getAleksLeHeader(CSVstring) -> list:
     # for headerEntry in headerList:
     #     headerEntry.strip()
     # aleksLeHeader = headerList
+
+aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
+aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
+
 
 def grandAleksLeFilter():
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
