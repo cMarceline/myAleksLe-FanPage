@@ -7,9 +7,10 @@
 }
 
 /* Image labels that sit in the grid */
-QLabel#characterImageLabel, QLabel#seriesImageLabel {
+QLabel#aleksLeImage, QLabel#seriesImageLabel {
   background: white;
-  border: 1px solid #d0d7df;
+  border: 1px solid #0077ff;
   border-radius: 8px;
   padding: 6px;
+  height: 300px
 }

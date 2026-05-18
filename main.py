@@ -175,15 +175,9 @@ seriesImage = QPixmap("series.png")
 
 # Create the image labels and set the images
 characterImageLabel = QLabel()
-characterImageLabel.setText("AleksLe Coming Soon...")
-# characterImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
-# characterImageLabel.setPixmap(characterImage)
-# characterImageLabel.setObjectName("characterImageLabel")
-seriesImageLabel = QLabel()
-seriesImageLabel.setText("Series Coming Soon...")
-# seriesImageLabel.setPixmap(seriesImage)
-# seriesImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
-# seriesImageLabel.setObjectName("seriesImageLabel")
+characterImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+characterImageLabel.setPixmap(characterImage)
+characterImageLabel.setObjectName("aleksLeImage")
 
 # Search and filter layout
 # GO FOR SIMPLE FILTER
@@ -191,17 +185,12 @@ searchnfilterGrid = QGridLayout()
 #filterGrid = QGridLayout()
 searchnfilterGrid.addWidget(searchEntry, 0, 0)
 searchnfilterGrid.addWidget(searchButton, 0, 1)
-#searchnfilterGrid.addWidget(filterText, 1, 0)
-#searchnfilterGrid.addWidget(filterAddButton, 1, 1)
-#searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
 searchnfilterGrid.addWidget(filterDropdown, 1, 0)
 searchnfilterGrid.addWidget(filterEntry, 1, 1)
 
 
 # init and connect search n filter buttons
-filterAddButton.clicked.connect(createFilters)
 populateDropdown(filterDropdown, aleksLeHeader)
-
 filterDropdown.currentIndexChanged.connect(
     lambda: populateDropdown(
         filterEntry,viewAllInCategory(filterDropdown.currentText()),True
