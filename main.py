@@ -182,7 +182,7 @@ characterImageLabel.setObjectName("aleksLeImage")
 # Search and filter layout
 searchnfilterGrid = QGridLayout()
 #filterGrid = QGridLayout()
-searchnfilterGrid.addWidget(searchLabel, 0, 0)
+searchnfilterGrid.addWidget(searchText, 0, 0)
 searchnfilterGrid.addWidget(searchEntry, 0, 1)
 searchnfilterGrid.addWidget(searchButton, 0, 2)
 searchnfilterGrid.addWidget(filterText, 1, 0)
