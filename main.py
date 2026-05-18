@@ -95,6 +95,8 @@ def populateDropdown(dropdown : QComboBox, addList):
     for entry in addList :
         dropdown.addItem()
 
+def createFilters():
+    pass
 
 # def aleksLeFilterCategoryUpdate(aleksLeData):
 #     filterEntry.clear()
