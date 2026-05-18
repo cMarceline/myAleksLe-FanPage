@@ -31,8 +31,12 @@ def cleanUpFindall(unsanitised : list) :
 
 def stripList(unstripped: list, term : str = None) :
     stripped = []
-    for entry in unstripped:
-        entry.strip(term)
+    if term == None
+        for entry in unstripped:
+            entry.strip()
+    else
+        for entry in unstripped:
+            entry.strip(term)
     return stripped
 
 def refresh(searchTerm, filterList):
