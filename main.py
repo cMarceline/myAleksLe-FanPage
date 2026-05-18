@@ -31,10 +31,10 @@ def cleanUpFindall(unsanitised : list) :
 
 def stripList(unstripped: list, term : str = None) :
     stripped = []
-    if term == None
+    if term == None: 
         for entry in unstripped:
             entry.strip()
-    else
+    else:
         for entry in unstripped:
             entry.strip(term)
     return stripped
