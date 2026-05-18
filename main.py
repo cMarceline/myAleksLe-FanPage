@@ -47,21 +47,21 @@ def getAleksLeHeader(CSVstring) -> list:
 
 def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
-    print(disgustingRegex)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
-    print(unsanitised)
     sanitised = cleanUpFindall(unsanitised)
-    print(sanitised)
     splitUp = []
     for unsplit in sanitised:
         nowSplit = unsplit.split(",")
         for word in nowSplit:
             word.strip()
         splitUp.append(nowSplit)
-    print(splitUp)
-
     return splitUp
 
+def viewAllInCategory(category) -> list:
+    categoryNumber = aleksLeHeader.index(category)
+    simpleRegex = r"^((?=([^,]*,){" + categoryNumber + r"}))"
+    justThat = findall(simpleRegex, aleksLeCSVString, MULTILINE)
+    print(justThat)
 
 # Display Functions
 def aleksLeTable(aleksLeList, aleksLeHeader):
@@ -184,6 +184,7 @@ searchnfilterGrid.addWidget(filterEntry, 1, 1)
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
 populateDropdown(filterDropdown, aleksLeHeader)
+filterDropdown.currentIndexChanged.connect(viewAllInCategory)
 
 searchButton.clicked.connect(lambda: refresh(searchEntry.text(),filterList))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
