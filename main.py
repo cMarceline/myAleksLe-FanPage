@@ -60,6 +60,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
 def viewAllInCategory(category) -> list:
     print(category)
     categoryNumber = aleksLeHeader.index(category)
+    categoryNumber += 1 # skip the blank clause
     print(categoryNumber)
     simpleRegex = r"^(?<=\n)((?=([^,]*,){" + str(categoryNumber) + r"}))"
     justThat = cleanUpFindall(findall(simpleRegex, aleksLeCSVString, MULTILINE))
