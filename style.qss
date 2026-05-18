@@ -18,3 +18,8 @@ QLabel#aleksLeImage, QLabel#seriesImageLabel {
   padding: 6px;
   height: 300px
 }
+
+QTableWidget {
+    width : 100%
+    height:75%
+}
