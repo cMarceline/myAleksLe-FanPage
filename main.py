@@ -68,7 +68,7 @@ def viewAllInCategory(category) -> list:
     for entry in justThat:
         stripped.append(entry.strip().strip(","))
     unduped = list(set(stripped))
-    print(unduped)
+    return unduped
 
 # Display Functions
 def aleksLeTable(aleksLeList, aleksLeHeader):
@@ -192,7 +192,9 @@ searchnfilterGrid.addWidget(filterEntry, 1, 1)
 filterAddButton.clicked.connect(createFilters)
 populateDropdown(filterDropdown, aleksLeHeader)
 filterDropdown.currentIndexChanged.connect(
-    lambda: populateDropdown(filterEntry,viewAllInCategory(filterDropdown.currentText()))
+    lambda: populateDropdown(
+        filterEntry,viewAllInCategory(filterDropdown.currentText())
+    )
 )
 
 searchButton.clicked.connect(lambda: refresh(searchEntry.text(),filterList))
