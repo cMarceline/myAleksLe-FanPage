@@ -50,7 +50,7 @@ def getAleksLeHeader():
     aleksLeHeader = headerList
 
 def grandAleksLeFilter():
-    disgustingRegex = searchFilterRegexConstructor(searchText.search)
+    disgustingRegex = searchFilterRegexConstructor(searchEntry.currentText(), filterList)
     unsanitised = findall(searchEntry.currentText(), aleksLeCSVString, MULTILINE)
     print(unsanitised)
     # for entry in unsanitised: 
