@@ -180,7 +180,7 @@ characterImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 characterImageLabel.setPixmap(QPixmap("aleksLe.png"))
 characterImageLabel.setScaledContents(True)
 characterImageLabel.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-characterImageLabel.setMaximumWidth(400)
+# characterImageLabel.setMaximumWidth(400)
 characterImageLabel.setObjectName("aleksLeImage")
 
 # Search and filter layout
