@@ -92,7 +92,7 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     # Put them together with positive lookaheads and get
     # ^(?<=\n)(?=([^,]*,){FILTERNUMBER}\s*(\bFILTERTEXT\b)(.*))(?=(.*)(\bSEARCHTEXT\b)(.*)).*$
     # Since I use positive lookaheads they are repeatable :)
-    gigaRegex = r"^(?<=\n)" # start and skip first line (header)
+    gigaRegex = r"^(?<=\n)(" # start and skip first line (header)
     # start with search text positive lookahead
     gigaRegex += r"(?=(.*)(\b" + searchText + r"\b)(.*))"
     # add the filters with positive lookaheads
@@ -103,7 +103,7 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
         gigaRegex += r"}\s*(\b" 
         gigaRegex += filter["entry"] 
         gigaRegex += r"\b)(.*))"
-    gigaRegex += r".*$" # End of line
+    gigaRegex += r").*$" # End of line
     return gigaRegex
 
 # Filter Mechanics holy molyyy this was a pain
