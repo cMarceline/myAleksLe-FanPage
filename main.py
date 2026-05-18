@@ -24,17 +24,18 @@ from re import (
 # Relevant Variables
 firstEntry = 0
 aleksLeData = []
-aleksLeHeader = []
 filterList = [
     {
         "category": "Role Scale",
-        "entry": "Main",
+        "entry": "Lead",
     },
     {
         "category": "Medium",
         "entry": "Video Game",
     }
 ]
+aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
+aleksLeHeader = getAleksLeHeader()
 
 
 def refresh():
@@ -42,12 +43,14 @@ def refresh():
     getAleksLeHeader()
     print(grandAleksLeFilter())
 
-def getAleksLeHeader():
-    headerString = aleksLeCSVString.split("\n").pop(firstEntry)
-    headerList = headerString.split(",")
-    for headerEntry in headerList:
-        headerEntry.strip()
-    aleksLeHeader = headerList
+def getAleksLeHeader(CSVstring) -> list:
+    header = [col.strip() for col in CSVstring.split("\n").pop(firstEntry).split(",")]
+    return header
+    # headerString = aleksLeCSVString.split("\n").pop(firstEntry)
+    # headerList = headerString.split(",")
+    # for headerEntry in headerList:
+    #     headerEntry.strip()
+    # aleksLeHeader = headerList
 
 def grandAleksLeFilter():
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
@@ -61,7 +64,6 @@ def grandAleksLeFilter():
 def categorisealeksLeData(aleksLeString) -> dict:
     # Break into different lines
     aleksLeList = aleksLeString.split("\n")
-    aleksLeHeader = [col.strip() for col in aleksLeList.pop(firstEntry).split(",")]
     # print(aleksLeHeader)
     aleksLeDictedList = []
     for aleksLeLine in aleksLeList:
@@ -173,12 +175,6 @@ def filterGridUpdate():
 #     for entry in aleksLeData["list"]:
 #         if entry.get(category, "") not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
 #             filterEntry.addItem(entry.get(category, ""))
-
-# Variable Establishing
-aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
-aleksLeSearchedCSV: str = ""
-aleksLeData = categorisealeksLeData(aleksLeCSVString) # Dictionary containging the header data and a list of dictionaries
-
 
 def main():
     aleksLeTable(aleksLeData)
