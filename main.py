@@ -21,10 +21,10 @@ from re import (
 )
 
 
-def refresh():
+def refresh(searchTerm, filterList):
     # ^(?:(.*)$) Returns only the first line
     aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
-    aleksLeListicle = grandAleksLeFilter(aleksLeCSVString)
+    aleksLeListicle = grandAleksLeFilter(aleksLeCSVString,searchTerm.text(),filterList)
 
 def getAleksLeHeader(CSVstring) -> list:
     header = [col.strip() for col in CSVstring.split("\n").pop(firstEntry).split(",")]
@@ -35,7 +35,7 @@ def getAleksLeHeader(CSVstring) -> list:
     #     headerEntry.strip()
     # aleksLeHeader = headerList
 
-def grandAleksLeFilter():
+def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
     print(disgustingRegex)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
@@ -65,8 +65,8 @@ def createAleksLeDict(header, list):
 
 # Display Functions
 def aleksLeTable(aleksLeData):
-    tableList = aleksLeData["list"]
-    tableheader = aleksLeData["header"]
+    tableList = aleksLeList
+    tableheader = aleksLeHeader
     table.clear()
     table.setRowCount(len(tableList))
     table.setColumnCount(len(tableheader))
@@ -161,21 +161,11 @@ def filterGridUpdate():
 
 # Relevant Variables
 firstEntry = 0
-aleksLeData = []
-filterList = [
-    {
-        "category": "Role Scale",
-        "entry": "Lead",
-    },
-    {
-        "category": "Medium",
-        "entry": "Video Game",
-    }
-]
+filterList = []
 
 aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
 aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
-
+aleksLeList = 
 
 
 def main():
