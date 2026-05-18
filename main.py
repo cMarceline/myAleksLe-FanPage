@@ -195,7 +195,9 @@ searchnfilterGrid.addWidget(searchButton, 0, 2)
 searchnfilterGrid.addWidget(filterText, 1, 0)
 searchnfilterGrid.addWidget(filterDropdown, 1, 1)
 searchnfilterGrid.addWidget(filterEntry, 1, 2)
-
+searchnFilterGrid.setColumnStretch(0,1)
+searchnFilterGrid.setColumnStretch(1,8)
+searchnFilterGrid.setColumnStretch(2,1)
 
 # init and connect search n filter buttons
 populateDropdown(filterDropdown, aleksLeHeader)
@@ -218,6 +220,7 @@ window.setLayout(gridLayout)
 gridLayout.addWidget(characterImageLabel, 0, 0)
 gridLayout.addLayout(searchnfilterGrid, 1, 0, 1, 4)
 gridLayout.addWidget(table, 2, 0, 1, 4)
+gridlayoutStretch = [2,1,4]
 gridLayout.setRowStretch(0,2)
 gridLayout.setRowStretch(1,1)
 gridLayout.setRowStretch(2,4)
