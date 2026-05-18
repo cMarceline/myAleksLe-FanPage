@@ -91,9 +91,9 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     return gigaRegex
 
 # Filter Mechanics holy molyyy this was a pain
-def populateDropdown(dropdown : QComboBox, addList):
+def populateDropdown(dropdown, addList:list):
     for entry in addList :
-        dropdown.addItem()
+        dropdown.addItem(entry)
 
 def createFilters():
     pass
