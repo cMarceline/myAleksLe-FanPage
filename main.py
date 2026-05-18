@@ -173,13 +173,11 @@ filterDropdown = QComboBox()
 filterEntry = QComboBox()
 filterAddButton = QPushButton("Add Filter")
 
-characterImage = QPixmap("aleksLe.png")
-
 
 # Create the image labels and set the images
 characterImageLabel = QLabel()
 characterImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
-characterImageLabel.setPixmap(characterImage)
+characterImageLabel.setPixmap(QPixmap("aleksLe.png"))
 characterImageLabel.setScaledContents(True)
 characterImageLabel.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 characterImageLabel.setObjectName("aleksLeImage")
@@ -202,6 +200,8 @@ searchnfilterGrid.setColumnStretch(2,1)
 
 # init and connect search n filter buttons
 populateDropdown(filterDropdown, aleksLeHeader)
+populateDropdown(filterEntry,viewAllInCategory(filterDropdown.currentText()),True)
+
 filterDropdown.currentIndexChanged.connect(
     lambda: populateDropdown(
         filterEntry,viewAllInCategory(filterDropdown.currentText()),True
@@ -211,7 +211,7 @@ filterEntry.currentIndexChanged.connect(
     lambda: refreshFilterList()
 )
 searchButton.clicked.connect(
-    lambda: refresh(searchEntry.text(),filterList)
+    lambda: refreshFilterList()
 )
 
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
