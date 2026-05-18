@@ -106,7 +106,7 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     return gigaRegex
 
 # Filter Mechanics holy molyyy this was a pain
-def populateDropdown(dropdown, addList:list, addBlank:bool=false):
+def populateDropdown(dropdown, addList:list, addBlank:bool=False):
     dropdown.clear()
     if addBlank:
         dropdown.addItem("")
@@ -194,7 +194,7 @@ filterAddButton.clicked.connect(createFilters)
 populateDropdown(filterDropdown, aleksLeHeader)
 filterDropdown.currentIndexChanged.connect(
     lambda: populateDropdown(
-        filterEntry,viewAllInCategory(filterDropdown.currentText()),true
+        filterEntry,viewAllInCategory(filterDropdown.currentText()),True
     )
 )
 
