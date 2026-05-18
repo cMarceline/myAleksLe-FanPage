@@ -49,10 +49,13 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     # print(disgustingRegex)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
     sanitised = cleanUpFindall(unsanitised)
-    saniSplit = sanitised.split(",") 
-    for sani in saniSplit:
-        sani.strip()
-    return saniSplit
+    splitUp = []
+    for unsplit in sanitised:
+        nowSplit = unsplit.split(",")
+        for word in nowSplit:
+            word.strip()
+        splitUp.append(nowSplit)
+    return splitUp
 
 
 # Display Functions
