@@ -21,23 +21,6 @@ from re import (
 )
 
 
-# Relevant Variables
-firstEntry = 0
-aleksLeData = []
-filterList = [
-    {
-        "category": "Role Scale",
-        "entry": "Lead",
-    },
-    {
-        "category": "Medium",
-        "entry": "Video Game",
-    }
-]
-
-aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
-aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
-
 def refresh():
     # ^(?:(.*)$) Returns only the first line
     aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
@@ -175,6 +158,25 @@ def filterGridUpdate():
 #     for entry in aleksLeData["list"]:
 #         if entry.get(category, "") not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
 #             filterEntry.addItem(entry.get(category, ""))
+
+# Relevant Variables
+firstEntry = 0
+aleksLeData = []
+filterList = [
+    {
+        "category": "Role Scale",
+        "entry": "Lead",
+    },
+    {
+        "category": "Medium",
+        "entry": "Video Game",
+    }
+]
+
+aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
+aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
+
+
 
 def main():
     #aleksLeTable(aleksLeData)
