@@ -35,6 +35,7 @@ def refresh(searchTerm, filterList):
     # ^(?:(.*)$) Returns only the first line
     aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
     aleksLeListicle = grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList)
+    print(aleksLeListicle)
     aleksLeTable(aleksLeListicle, aleksLeHeader)
 
 def getAleksLeHeader(CSVstring) -> list:
