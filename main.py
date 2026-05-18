@@ -50,7 +50,8 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
     print(disgustingRegex)
     print(aleksLeCSVString)
-    unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
+    unsanitised = [m.group(0) for m in re.finditer(disgustingRegex, aleksLeCSVString, re.MULTILINE)]
+    #unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
     print(unsanitised)
     sanitised = cleanUpFindall(unsanitised)
     splitUp = []
