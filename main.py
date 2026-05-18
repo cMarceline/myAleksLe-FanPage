@@ -24,7 +24,7 @@ from re import (
 def refresh(searchTerm, filterList):
     # ^(?:(.*)$) Returns only the first line
     aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
-    aleksLeListicle = grandAleksLeFilter(aleksLeCSVString,searchTerm.text(),filterList)
+    aleksLeListicle = grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList)
 
 def getAleksLeHeader(CSVstring) -> list:
     header = [col.strip() for col in CSVstring.split("\n").pop(firstEntry).split(",")]
@@ -221,7 +221,7 @@ searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
 
-searchButton.clicked.connect(lambda: refresh())
+searchButton.clicked.connect(lambda: refresh(searchEntry.text(),filterList))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
 
 # align the widgets in the grid layout and add them to the window
