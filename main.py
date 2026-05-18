@@ -118,6 +118,7 @@ def refreshFilterList():
         "category" : filterDropdown.currentText(),
         "entry" : filterEntry.currentText()
     }]
+    print(filterList)
     refresh(searchEntry.text(),filterList)
 
 
