@@ -29,9 +29,11 @@ def cleanUpFindall(unsanitised : list) :
         sanitised.append(cleaningUp)
     return sanitised
 
-def stripList(list: list, term : str = None) :
-    for entry in list:
+def stripList(unstripped: list, term : str = None) :
+    stripped = []
+    for entry in unstripped:
         entry.strip(term)
+    return stripped
 
 def refresh(searchTerm, filterList):
     # ^(?:(.*)$) Returns only the first line
@@ -55,7 +57,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     splitUp = []
     for unsplit in sanitised:
         nowSplit = unsplit.split(",")
-        stripList(nowSplit)
+        nowSplit = stripList(nowSplit)
         splitUp.append(nowSplit)
     return splitUp
 
