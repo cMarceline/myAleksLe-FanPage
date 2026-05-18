@@ -220,8 +220,8 @@ searchnfilterGrid.addWidget(searchButton, 0, 1)
 #searchnfilterGrid.addWidget(filterText, 1, 0)
 #searchnfilterGrid.addWidget(filterAddButton, 1, 1)
 #searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
-searchnfilterGridaddWidget(filterDropdown, 1, 0)
-searchnfilterGridaddWidget(filterEntry, 1, 1)
+searchnfilterGrid.addWidget(filterDropdown, 1, 0)
+searchnfilterGrid.addWidget(filterEntry, 1, 1)
 
 
 # init and connect search n filter buttons
