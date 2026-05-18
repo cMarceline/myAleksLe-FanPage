@@ -35,7 +35,6 @@ def refresh(searchTerm, filterList):
     # ^(?:(.*)$) Returns only the first line
     aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
     aleksLeListicle = grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList)
-    print(aleksLeListicle)
     aleksLeTable(aleksLeListicle, aleksLeHeader)
 
 def getAleksLeHeader(CSVstring) -> list:
@@ -51,6 +50,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
     sanitised = cleanUpFindall(unsanitised)
+    print(sanitised)
     splitUp = []
     for unsplit in sanitised:
         nowSplit = unsplit.split(",")
