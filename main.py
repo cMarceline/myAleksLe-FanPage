@@ -75,7 +75,6 @@ def aleksLeTable(aleksLeList, aleksLeHeader):
     tableList = aleksLeList
     tableheader = aleksLeHeader
     table.clear()
-    print(tableList)
     table.setRowCount(len(tableList))
     table.setColumnCount(len(tableheader))
     table.setHorizontalHeaderLabels(tableheader)
@@ -118,7 +117,6 @@ def refreshFilterList():
         "category" : filterDropdown.currentText(),
         "entry" : filterEntry.currentText()
     }]
-    print(filterList)
     refresh(searchEntry.text(),filterList)
 
 
