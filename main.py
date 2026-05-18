@@ -49,7 +49,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     # print(disgustingRegex)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
     sanitised = cleanUpFindall(unsanitised)
-    saniSplit = cleaningUp.split(",") 
+    saniSplit = sanitised.split(",") 
     for sani in saniSplit:
         sani.strip()
     return saniSplit
