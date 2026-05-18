@@ -190,6 +190,8 @@ table = QTableWidget()
 searchEntry = QLineEdit()
 searchButton = QPushButton("Search")
 
+filterDropdown = QComboBox()
+filterEntry = QComboBox()
 filterText = QLabel("Filters")
 filterAddButton = QPushButton("Add Filter")
 
@@ -210,16 +212,21 @@ seriesImageLabel.setText("Series Coming Soon...")
 # seriesImageLabel.setObjectName("seriesImageLabel")
 
 # Search and filter layout
+# GO FOR SIMPLE FILTER
 searchnfilterGrid = QGridLayout()
-filterGrid = QGridLayout()
+#filterGrid = QGridLayout()
 searchnfilterGrid.addWidget(searchEntry, 0, 0)
 searchnfilterGrid.addWidget(searchButton, 0, 1)
-searchnfilterGrid.addWidget(filterText, 1, 0)
-searchnfilterGrid.addWidget(filterAddButton, 1, 1)
-searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
+#searchnfilterGrid.addWidget(filterText, 1, 0)
+#searchnfilterGrid.addWidget(filterAddButton, 1, 1)
+#searchnfilterGrid.addLayout(filterGrid, 2, 0, 1, 2)
+searchnfilterGridaddWidget(filterDropdown, 1, 0)
+searchnfilterGridaddWidget(filterEntry, 1, 1)
+
 
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
+
 
 searchButton.clicked.connect(lambda: refresh(searchEntry.text(),filterList))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
