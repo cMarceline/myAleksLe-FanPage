@@ -40,18 +40,15 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
     # print(disgustingRegex)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
-    print(unsanitised)
     sanitised = []
     for entry in unsanitised:
-        print(entry)
         cleaningUp = "" 
         for text in entry:
             cleaningUp += text
-
         newList = cleaningUp.split(",") 
-        print(newList)
         sanitised.append(newList)
     print(sanitised)
+    return sanitised
 
 
 # Display Functions
@@ -59,6 +56,7 @@ def aleksLeTable(aleksLeList, aleksLeHeader):
     tableList = aleksLeList
     tableheader = aleksLeHeader
     table.clear()
+    print(tableList)
     table.setRowCount(len(tableList))
     table.setColumnCount(len(tableheader))
     table.setHorizontalHeaderLabels(tableheader)
