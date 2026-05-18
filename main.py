@@ -165,7 +165,7 @@ filterList = []
 
 aleksLeCSVString : str = open("aleksLe.csv").read() # The Raw CSV String
 aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
-aleksLeList = 
+aleksLeList = []
 
 
 def main():
