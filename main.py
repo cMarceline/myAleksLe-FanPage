@@ -46,7 +46,9 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
         for text in entry:
             cleaningUp += text
         saniList = cleaningUp.split(",")
-        saniList.strip()
+        for sani in saniList:
+            sani.strip() 
+
         sanitised.append(saniList)
     print(saniList)
 
