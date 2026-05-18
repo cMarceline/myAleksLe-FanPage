@@ -118,6 +118,7 @@ def refreshFilterList():
         "category" : filterDropdown.currentText(),
         "entry" : filterEntry.currentText()
     }]
+    refresh(searchEntry.text(),filterList)
 
 
 def createFilters():
@@ -206,9 +207,7 @@ filterDropdown.currentIndexChanged.connect(
     )
 )
 filterDropdown.currentIndexChanged.connect(
-    lambda: 
-        refreshFilterList();
-        refresh(searchEntry.text(),filterList)
+    lambda: refreshFilterList()
 )
 searchButton.clicked.connect(
     lambda: refresh(searchEntry.text(),filterList)
