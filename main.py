@@ -51,7 +51,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
         newList = cleaningUp.split(",") 
         print(newList)
         sanitised.append(newList)
-    print(saniList)
+    print(sanitised)
 
 
 # Display Functions
