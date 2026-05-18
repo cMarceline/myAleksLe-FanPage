@@ -207,7 +207,7 @@ filterDropdown.currentIndexChanged.connect(
         filterEntry,viewAllInCategory(filterDropdown.currentText()),True
     )
 )
-filterDropdown.currentIndexChanged.connect(
+filterEntry.currentIndexChanged.connect(
     lambda: refreshFilterList()
 )
 searchButton.clicked.connect(
