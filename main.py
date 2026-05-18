@@ -161,13 +161,13 @@ window.setObjectName("mainWindow")
 gridLayout = QGridLayout()
 table = QTableWidget()
 
-searchLabel = QLabel
+searchText = QLabel("Search Here!")
 searchEntry = QLineEdit()
 searchButton = QPushButton("Search")
 
+filterText = QLabel("Filters!")
 filterDropdown = QComboBox()
 filterEntry = QComboBox()
-filterText = QLabel("Filters")
 filterAddButton = QPushButton("Add Filter")
 
 characterImage = QPixmap("aleksLe.png")
