@@ -160,6 +160,7 @@ window.setObjectName("mainWindow")
 
 # Create the main table widget
 gridLayout = QGridLayout()
+gridLayout.setObjectName("finalGrid")
 table = QTableWidget()
 
 searchText = QLabel("Search Here!")
@@ -184,6 +185,9 @@ characterImageLabel.setObjectName("aleksLeImage")
 
 # Search and filter layout
 searchnfilterGrid = QGridLayout()
+searchnfilterGrid.setColumnStretch(0, 10)  # column 0 fills available space
+searchnfilterGrid.setColumnStretch(1, 0)   # column 1 takes only its natural width
+searchnfilterGrid.setColumnStretch(2, 7)   # column 2 gets a large share (~75%)
 #filterGrid = QGridLayout()
 searchnfilterGrid.addWidget(searchText, 0, 0)
 searchnfilterGrid.addWidget(searchEntry, 0, 1)

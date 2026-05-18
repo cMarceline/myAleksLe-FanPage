@@ -20,7 +20,7 @@ QLabel#aleksLeImage {
   height: 100%;
 }
 
-QPixmap{
+QGridLayout#finalGrid{
     
 }
 
