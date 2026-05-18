@@ -40,7 +40,7 @@ aleksLeHeader = getAleksLeHeader()
 
 def refresh():
     # ^(?:(.*)$) Returns only the first line
-    getAleksLeHeader()
+    aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
     print(grandAleksLeFilter())
 
 def getAleksLeHeader(CSVstring) -> list:
