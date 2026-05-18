@@ -137,8 +137,8 @@ def createFilters():
 # Relevant Variables
 firstEntry = 0
 filterList = [{
-    "category" : Character,
-    "entry" : Luke
+    "category" : "Character",
+    "entry" : "Luke"
 }]
 
 aleksLeCSVString : str = open("aleksLeTiny.csv").read() # The Raw CSV String
