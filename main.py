@@ -40,14 +40,18 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     disgustingRegex = searchFilterRegexConstructor(searchEntry.text(), filterList)
     # print(disgustingRegex)
     unsanitised = findall(disgustingRegex, aleksLeCSVString, MULTILINE)
+    sanitised = cleanUpFindAll(unsanitised)
+    saniSplit = cleaningUp.split(",") 
+    for sani in saniSplit:
+        sani.strip()
+    return saniSplit
+
+def cleanUpFindall(unsanitised : list)
     sanitised = []
     for entry in unsanitised:
         cleaningUp = "" 
         for text in entry:
             cleaningUp += text
-        newList = cleaningUp.split(",") 
-        sanitised.append(newList)
-    print(sanitised)
     return sanitised
 
 
@@ -60,7 +64,7 @@ def aleksLeTable(aleksLeList, aleksLeHeader):
     table.setRowCount(len(tableList))
     table.setColumnCount(len(tableheader))
     table.setHorizontalHeaderLabels(tableheader)
-    
+
     for row in range(len(tableList)):
         for column in range(len(tableheader)):
             table.setItem(row, column, QTableWidgetItem(tableList[row][column]))
@@ -86,49 +90,10 @@ def searchFilterRegexConstructor(searchText, filterList) -> str:
     gigaRegex += r".*$" # End of line
     return gigaRegex
 
-def regexSnipper(regex, fullString, ) -> list:
-    matches = findall(regex, fullString, MULTILINE)
-    return matches
-
 # Filter Mechanics holy molyyy this was a pain
-def checkFilters(checkDictionary, category, entry) -> bool:
-    if category == "None":
-        return True
-    if checkDictionary.get(category, "") == entry:
-        return True
-    return False
-
-def checkAvailableFilterCategories():
-    occupiedCategories = []
-    for filter in filterList:
-        occupiedCategories.append(filter["category"].currentText())
-    availableCategories = []
-    for category in aleksLeData["header"]:
-        if category not in occupiedCategories:
-            availableCategories.append(category)
-    return availableCategories
-    #return aleksLeData["header"]
-
-#filterList = []
-def createFilters(): 
-
-    pass
-
-def deleteFilters(filterIndex): 
-    pass
-
-def filterCategoryUpdate(filterCategorySelection,filterListIndex):
-    pass
-def filterEntryUpdate(filterEntrySelection,filterListIndex):
-    pass
-def filterListUpdate():
-    pass
-
-def filterGridUpdate():
-    for filter in filterList:
-        filterGrid.addWidget(filter["category"], filterList.index(filter), 0)
-        filterGrid.addWidget(filter["entry"], filterList.index(filter), 1)
-        filterGrid.addWidget(filter["deleteButton"], filterList.index(filter), 2)
+def populateDropdown(dropdown : QComboBox, addList):
+    for entry in addList
+        dropdown.addItem()
 
 
 # def aleksLeFilterCategoryUpdate(aleksLeData):
@@ -139,6 +104,7 @@ def filterGridUpdate():
 #     for entry in aleksLeData["list"]:
 #         if entry.get(category, "") not in [filterEntry.itemText(i) for i in range(filterEntry.count())]:
 #             filterEntry.addItem(entry.get(category, ""))
+
 
 # Relevant Variables
 firstEntry = 0
@@ -207,7 +173,7 @@ searchnfilterGrid.addWidget(filterEntry, 1, 1)
 
 # init and connect search n filter buttons
 filterAddButton.clicked.connect(createFilters)
-
+populateDropdown(filterDropdown, aleksLeHeader)
 
 searchButton.clicked.connect(lambda: refresh(searchEntry.text(),filterList))
 #filterCategory.currentIndexChanged.connect(lambda:aleksLeFilterCategoryUpdate(aleksLeData))
