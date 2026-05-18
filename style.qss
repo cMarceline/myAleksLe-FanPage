@@ -11,15 +11,16 @@ QLabel{
 }
 
 /* Image labels that sit in the grid */
-QLabel#aleksLeImage, QLabel#seriesImageLabel {
+QLabel#aleksLeImage {
   background: white;
   border: 1px solid #0077ff;
   border-radius: 8px;
   padding: 6px;
-  height: 300px
+  min-height: 100px;
+  height: 100%;
 }
 
 QTableWidget {
-    width : 100%
-    height:75%
+    min-height: 75%;
+    width: 100%;
 }
