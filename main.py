@@ -59,7 +59,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
         for word in nowSplit:
             word.strip()
         splitUp.append(nowSplit)
-    print(splitUp)
+    print(splitUp) # The Mysterious Print of fixing all bugs... I suppose you can deal with this
     return splitUp
 
 def viewAllInCategory(category) -> list:
