@@ -179,7 +179,8 @@ characterImageLabel = QLabel()
 characterImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 characterImageLabel.setPixmap(QPixmap("aleksLe.png"))
 characterImageLabel.setScaledContents(True)
-characterImageLabel.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+characterImageLabel.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+characterImageLabel.setMaximumWidth(400)
 characterImageLabel.setObjectName("aleksLeImage")
 
 # Search and filter layout
@@ -218,7 +219,6 @@ searchButton.clicked.connect(
 
 # align the widgets in the grid layout and add them to the window
 window.setLayout(gridLayout)
-gridLayout.setColumnStretch(0, 1)
 gridLayout.addWidget(characterImageLabel, 0, 0)
 gridLayout.addLayout(searchnfilterGrid, 1, 0, 1, 4)
 gridLayout.addWidget(table, 2, 0, 1, 4)
