@@ -58,7 +58,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
     return splitUp
 
 def viewAllInCategory(category) -> list:
-    categoryNumber = aleksLeHeader.index(category) - firstEntry
+    categoryNumber = aleksLeHeader.index(category)
     simpleRegex = r"^(?<=\n)((?=([^,]*,){" + str(categoryNumber) + r"}))"
     justThat = cleanUpFindall(findall(simpleRegex, aleksLeCSVString, MULTILINE))
     print(justThat)
