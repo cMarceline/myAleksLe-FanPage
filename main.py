@@ -46,7 +46,7 @@ def grandAleksLeFilter(aleksLeCSVString,searchTerm,filterList):
         sani.strip()
     return saniSplit
 
-def cleanUpFindall(unsanitised : list)
+def cleanUpFindall(unsanitised : list) :
     sanitised = []
     for entry in unsanitised:
         cleaningUp = "" 
