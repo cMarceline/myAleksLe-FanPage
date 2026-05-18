@@ -139,10 +139,7 @@ def createFilters():
 
 # Relevant Variables
 firstEntry = 0
-filterList = [{
-    # "category" : "Character",
-    # "entry" : "Luke"
-}]
+filterList = []
 
 aleksLeCSVString : str = open("aleksLeTiny.csv").read() # The Raw CSV String
 aleksLeHeader = getAleksLeHeader(aleksLeCSVString)
@@ -150,7 +147,7 @@ aleksLeList = []
 
 
 def main():
-    refresh(searchEntry.text(),filterList)
+    refreshFilterList()
     window.resize(1000, 600)
     window.show()
     sys.exit(app.exec())
@@ -230,8 +227,6 @@ gridlayoutStretch = [2,1,4]
 gridLayout.setRowStretch(0,2)
 gridLayout.setRowStretch(1,1)
 gridLayout.setRowStretch(2,4)
-
-
 
 if __name__ == "__main__":
     main()
